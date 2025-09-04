@@ -1,0 +1,57 @@
+/* CSS Document */
+div #images {
+  width: 900px;
+  margin: 50px auto;
+}
+div.img {
+  margin: 3px;
+  float: left;
+  text-align: center;
+}
+div.img a img {
+  display: inline;
+  margin: 3px;
+  width: 200px;
+  height: 200px;
+  transition: transform 0.8s;
+}
+div.img a:hover img {
+  transform: scale(1.05);
+} /*缩放特效*/
+div.desc {
+  text-align: center;
+  font: 12px 黑体;
+  width: 200px;
+  margin: 10px 5px 10px 5px;
+}
+#main {
+  height: 900px;
+}
+@media (max-width: 1000px) {
+  div #images {
+    width: 100%;
+  }
+  div.img {
+    margin: 3px;
+    float: left;
+    text-align: center;
+  }
+  div.img a img {
+    display: inline-block;
+    margin: 3px;
+    width: 200px;
+    height: 200px;
+  }
+  div.img a:hover img {
+    transform: none;
+  } /*缩放特效*/
+  div.desc {
+    text-align: center;
+    font: 12px 黑体;
+    width: 200px;
+    margin: 10px 5px 10px 5px;
+  }
+  #main {
+    height: auto;
+  }
+}

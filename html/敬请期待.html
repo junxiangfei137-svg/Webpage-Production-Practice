@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>敬请期待 - 八大菜系美食网</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <style>
+      /* 敬请期待页面专属样式 */
+      body {
+        background-color: #e8a94c;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "黑体", "楷体", sans-serif;
+      }
+
+      /* 外层容器：相对定位，用于承载图片和悬浮按钮 */
+      .waiting-container {
+        position: relative; /* 关键：作为按钮绝对定位的参考 */
+        width: 90%;
+        max-width: 600px; /* 限制最大宽度，避免图片过大 */
+        text-align: center;
+      }
+
+      /* 敬请期待图片样式：自适应容器宽度 */
+      .waiting-img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border: 2px solid #8b4513;
+      }
+
+      /* 倒计时文本：悬浮在图片上方（偏上位置） */
+      .countdown {
+        position: absolute;
+        top: 20%; /* 距离图片顶部20%位置 */
+        left: 50%;
+        transform: translateX(-50%); /* 水平居中 */
+        color: #8b4513;
+        font: 24px 黑体;
+        font-weight: bold;
+        background: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* 半透明白色背景，增强文字可读性 */
+        padding: 8px 20px;
+        border-radius: 4px;
+        z-index: 10; /* 确保在图片之上 */
+      }
+
+      /* 立即返回首页按钮：悬浮在图片下方（偏下位置） */
+      .back-home {
+        position: absolute;
+        bottom: 15%; /* 距离图片底部15%位置 */
+        left: 50%;
+        transform: translateX(-50%); /* 水平居中 */
+        display: inline-block;
+        padding: 12px 35px;
+        background: #f2cab3;
+        color: #333;
+        text-decoration: none;
+        border-radius: 4px;
+        font: 18px 楷体;
+        transition: all 0.3s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 按钮阴影，增强层次感 */
+        z-index: 10; /* 确保在图片之上 */
+      }
+
+      .back-home:hover {
+        background: #e8a94c;
+        color: white;
+        transform: translateX(-50%) translateY(-2px); /*  hover时轻微上浮，提升交互感 */
+      }
+
+      /* 响应式适配：根据屏幕尺寸调整文字和按钮大小 */
+      @media (max-width: 480px) {
+        .countdown {
+          font-size: 20px;
+          padding: 6px 15px;
+          top: 15%; /* 小屏上调整倒计时位置，避免遮挡 */
+        }
+        .back-home {
+          font-size: 16px;
+          padding: 10px 30px;
+          bottom: 10%; /* 小屏上调整按钮位置 */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="waiting-container">
+      <!-- 敬请期待图片：作为底层元素 -->
+      <img
+        src="../images/敬请期待.jpg"
+        alt="页面敬请期待"
+        class="waiting-img"
+      />
+
+      <!-- 倒计时文本：悬浮在图片上方 -->
+      <div class="countdown">
+        倒计时 <span id="time">3</span> 秒后自动返回首页...
+      </div>
+
+      <!-- 立即返回首页按钮：悬浮在图片之上（下方位置） -->
+      <a href="../index.html" class="back-home">立即返回首页</a>
+    </div>
+
+    <!-- 3秒倒计时自动跳转逻辑 -->
+    <script>
+      let countdown = 3;
+      const timeElement = document.getElementById("time");
+      const timer = setInterval(() => {
+        countdown--;
+        timeElement.textContent = countdown;
+        // 倒计时结束后跳转首页（路径需与实际项目一致）
+        if (countdown <= 0) {
+          clearInterval(timer);
+          window.location.href = "../index.html";
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>

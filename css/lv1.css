@@ -1,0 +1,92 @@
+/* CSS Document */
+#main h1 {
+  border-bottom: 1px black solid;
+  width: 80%;
+  font: 24px/1.5em 黑体;
+  margin: 40px;
+}
+.lft_img {
+  float: left;
+  margin: 10px 40px;
+}
+.lft_img img {
+  width: 480px;
+  height: 350px;
+}
+.rgt_txt {
+  width: 400px;
+  height: 200px;
+  float: left;
+}
+.rgt_txt p,
+.lft_txt p {
+  font: 20px/1.4em 隶书;
+  margin-bottom: 1.6em;
+}
+.rgt_img {
+  float: left;
+}
+.rgt_img img {
+  width: 480px;
+  height: 350px;
+}
+.lft_txt {
+  width: 400px;
+  height: 200px;
+  float: left;
+  margin: 0px 40px;
+}
+.clear {
+  clear: both;
+}
+
+/* 响应式代码 */
+@media (max-width: 768px) {
+  .lft_img img,
+  .rgt_img img {
+    width: 100%;
+    max-width: 300px; /* 图片最大宽度限制 */
+    height: auto;
+  }
+
+  .rgt_txt,
+  .lft_txt {
+    width: calc(100% - 340px); /* 保留左右布局 */
+    height: auto; /* 取消固定高度 */
+    margin: 10px 20px;
+  }
+
+  #main h1 {
+    width: 90%;
+    margin: 20px auto;
+  }
+}
+
+/* 超小屏幕适配（≤480px） */
+@media (max-width: 480px) {
+  .lft_img,
+  .rgt_img,
+  .lft_txt,
+  .rgt_txt {
+    float: none;
+    width: 100% !important; /* 强制占满宽度 */
+    margin: 10px auto !important;
+    padding: 0 10px;
+    box-sizing: border-box; /* 内边距不影响总宽度 */
+  }
+  .lft_img img,
+  .rgt_img img {
+    max-width: 100% !important; /* 图片不超过屏幕宽度 */
+    height: auto;
+  }
+  #main h1 {
+    width: 90%;
+    margin: 15px auto;
+    font-size: 20px;
+  }
+  .rgt_txt p,
+  .lft_txt p {
+    font-size: 16px;
+    line-height: 1.3em;
+  }
+}

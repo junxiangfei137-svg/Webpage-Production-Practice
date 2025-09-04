@@ -1,0 +1,113 @@
+/* CSS Document */
+
+#main h2 {
+  background: #dc0;
+  font: 18px 黑体;
+  margin: 40px 0px;
+  padding: 8px 40px;
+}
+#box {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  padding: 1px; /*此项必须设置，否则h1的margin会影响#box的margin*/
+}
+#sidebar {
+  position: absolute;
+  top: 0px;
+  left: 700px;
+  background: #d6ea82;
+  width: 300px;
+  height: 744px;
+}
+#maintxt {
+  width: 700px;
+  height: 700px;
+}
+#maintxt ul {
+  margin: 30px 0px;
+  list-style: none;
+}
+#maintxt ul li {
+  margin-bottom: 20px;
+}
+
+#maintxt p,
+#maintxt ol li {
+  font: 16px/1.8em 宋体;
+  margin-left: 40px;
+}
+
+#maintxt ol {
+  margin: 40px 20px;
+}
+#sidebar p {
+  margin: 0px 20px 20px 40px;
+  line-height: 1.2em;
+}
+
+/* 响应式代码 */
+@media (max-width: 1024px) {
+  #box {
+    padding: 15px;
+  }
+  #maintxt {
+    width: 65%; /* 主内容区缩小 */
+    height: auto;
+  }
+  #sidebar {
+    width: 30%; /* 侧边栏缩小 */
+    left: 68%;
+    height: auto;
+    padding: 15px 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #maintxt {
+    width: 60%;
+  }
+  #sidebar {
+    width: 35%;
+    left: 63%;
+  }
+  #maintxt p,
+  #maintxt ol li {
+    margin-left: 10px;
+  }
+}
+
+/* 超小屏适配（≤480px） */
+@media (max-width: 480px) {
+  #box {
+    position: static; /* 取消相对定位 */
+    padding: 10px;
+  }
+  #maintxt,
+  #sidebar {
+    width: 100% !important; /* 强制占满整行 */
+    position: static !important; /* 取消绝对定位 */
+    left: auto !important;
+    height: auto !important; /* 取消固定高度 */
+    margin: 0 !important;
+  }
+  #sidebar {
+    margin-top: 20px !important; /* 与主内容保持间距 */
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  #main h2 {
+    padding: 8px 15px;
+    margin: 20px 0;
+    font-size: 16px;
+  }
+  #maintxt p,
+  #maintxt ol li {
+    margin-left: 15px;
+    font-size: 14px;
+    line-height: 1.6em;
+  }
+  #maintxt ol {
+    margin: 20px 10px;
+  }
+}

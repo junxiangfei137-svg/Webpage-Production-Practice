@@ -1,0 +1,359 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>独家菜单 - 八大菜系特色精选</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <style>
+      /* 独家菜单专属样式 */
+      .menu-header {
+        text-align: center;
+        margin: 30px 0;
+        padding-bottom: 20px;
+        border-bottom: 2px solid #e8a94c;
+      }
+      .menu-header h1 {
+        font: 32px/1.5em 黑体;
+        color: #8b4513;
+        margin-bottom: 10px;
+      }
+      .menu-header p {
+        font: 18px/1.2em 楷体;
+        color: #666;
+      }
+
+      /* 菜单分类导航 */
+      .menu-cate {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 20px 0;
+      }
+      .menu-cate a {
+        display: block;
+        padding: 8px 20px;
+        background: #f2cab3;
+        color: #333;
+        text-decoration: none;
+        border-radius: 20px;
+        font: 16px 楷体;
+        transition: all 0.3s;
+      }
+      .menu-cate a:hover,
+      .menu-cate a.active {
+        background: #e8a94c;
+        color: white;
+      }
+
+      /* 菜品卡片容器 */
+      .menu-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        padding: 20px 40px;
+      }
+      .menu-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+      .menu-card:hover {
+        transform: translateY(-5px);
+      }
+      .card-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+      .card-content {
+        padding: 15px;
+      }
+      .card-title {
+        font: 20px 黑体;
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .card-tag {
+        font-size: 12px;
+        color: white;
+        background: #dc0;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+      .card-desc {
+        font: 14px 宋体;
+        color: #666;
+        line-height: 1.5em;
+        margin-bottom: 10px;
+      }
+      .card-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font: 16px 黑体;
+        color: #ff8023;
+      }
+      .card-footer a {
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+      }
+      .card-footer a:hover {
+        color: #e8a94c;
+      }
+
+      @media (max-width: 1000px) {
+        #topnav,
+        #footer {
+          display: none;
+        }
+        body {
+          background-color: #e8a94c;
+        }
+        #responsive_bread {
+          display: block;
+          padding: 8px;
+          background: #e9cf83;
+          font: 12px 黑体;
+        }
+        #main {
+          width: 100%;
+          position: relative;
+          top: 0px;
+          height: auto;
+        }
+        #banner img {
+          width: 100%;
+          height: auto;
+        }
+        #nav li {
+          display: inline-block;
+          width: 25%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 顶部导航栏复用结构 -->
+    <div id="topnav">
+      <div id="top">
+        <p id="logo">
+          <a href="../index.html"><img src="../images/logo.png" /></a>
+        </p>
+        <p id="bread">
+          您的位置：<a href="../index.html">首页</a> > <strong>独家菜单</strong>
+        </p>
+        <ul id="toplist">
+          <li><a href="#">联系我们</a></li>
+          <li><a href="#" class="active">独家菜单</a></li>
+        </ul>
+        <form id="topform">
+          <input />
+          <input type="submit" id="sbmt" value="搜索" />
+        </form>
+      </div>
+    </div>
+
+    <!-- 中部主体 -->
+    <div id="main" style="height: auto; min-height: 1000px">
+      <p id="banner">
+        <img
+          src="../images/独家菜单.jpg"
+          alt="独家菜单 banner"
+          style="width: 100%; height: auto"
+        />
+      </p>
+
+      <!-- 主导航栏 -->
+      <ul id="nav">
+        <li><a href="鲁菜.html">鲁菜</a></li>
+        <li><a href="川菜.html">川菜</a></li>
+        <li><a href="粤菜.html">粤菜</a></li>
+        <li><a href="苏菜.html">苏菜</a></li>
+        <li><a href="浙菜.html">浙菜</a></li>
+        <li><a href="湘菜.html">湘菜</a></li>
+        <li><a href="闽菜.html">闽菜</a></li>
+        <li><a href="徽菜.html">徽菜</a></li>
+      </ul>
+
+      <!-- 独家菜单头部 -->
+      <div class="menu-header">
+        <h1>独家菜单 - 八大菜系特色精选</h1>
+        <p>
+          精选各菜系经典菜品，融合传统工艺与创新口味，只为给您独特的美食体验
+        </p>
+      </div>
+
+      <!-- 菜单分类导航 -->
+      <div class="menu-cate">
+        <a href="#" class="active">全部菜品</a>
+        <a href="敬请期待.html">热门推荐</a>
+        <a href="敬请期待.html">鲁菜精选</a>
+        <a href="敬请期待.html">川菜辣味</a>
+        <a href="敬请期待.html">粤菜清淡</a>
+        <a href="敬请期待.html">苏浙鲜甜</a>
+        <a href="敬请期待.html">湘闽风味</a>
+        <a href="敬请期待.html">徽菜醇厚</a>
+      </div>
+
+      <!-- 菜品卡片容器 -->
+      <div class="menu-container">
+        <!-- 鲁菜 - 九转大肠 -->
+        <div class="menu-card">
+          <img src="../images/九转大肠.jpg" alt="九转大肠" class="card-img" />
+          <div class="card-content">
+            <div class="card-title">
+              <span>九转大肠</span>
+              <span class="card-tag">鲁菜</span>
+            </div>
+            <p class="card-desc">
+              鲁菜经典名菜，经九道工序烹制，外焦里嫩，酸甜适口，肥而不腻，层次丰富。
+            </p>
+            <div class="card-footer">
+              <span>¥88/份</span>
+              <a href="九转大肠.html">查看详情 →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 川菜 - 麻婆豆腐 -->
+        <div class="menu-card">
+          <img src="../images/麻婆豆腐.jpg" alt="麻婆豆腐" class="card-img" />
+          <div class="card-content">
+            <div class="card-title">
+              <span>麻婆豆腐</span>
+              <span class="card-tag">川菜</span>
+              <span class="card-tag" style="background: #ff4444">热门</span>
+            </div>
+            <p class="card-desc">
+              川菜代表之一，豆腐软嫩，麻辣鲜香，辅以牛肉末增香，下饭神器，老少皆宜。
+            </p>
+            <div class="card-footer">
+              <span>¥32/份</span>
+              <a href="敬请期待.html">查看详情 →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 粤菜 - 烧腊双拼 -->
+        <div class="menu-card">
+          <img src="../images/烧腊双拼.jpg" alt="烧腊双拼" class="card-img" />
+          <div class="card-content">
+            <div class="card-title">
+              <span>烧腊双拼</span>
+              <span class="card-tag">粤菜</span>
+            </div>
+            <p class="card-desc">
+              精选烧鹅与叉烧双拼，鹅皮酥脆、叉烧香甜，搭配秘制酱汁，尽显粤式风味。
+            </p>
+            <div class="card-footer">
+              <span>¥68/份</span>
+              <a href="敬请期待.html">查看详情 →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 苏菜 - 松鼠鳜鱼 -->
+        <div class="menu-card">
+          <img src="../images/松鼠鳜鱼.jpg" alt="松鼠鳜鱼" class="card-img" />
+          <div class="card-content">
+            <div class="card-title">
+              <span>松鼠鳜鱼</span>
+              <span class="card-tag">苏菜</span>
+              <span class="card-tag" style="background: #ff8800">招牌</span>
+            </div>
+            <p class="card-desc">
+              苏菜经典，鳜鱼剞花油炸后形似松鼠，浇上酸甜芡汁，外酥里嫩，造型精致。
+            </p>
+            <div class="card-footer">
+              <span>¥128/份</span>
+              <a href="敬请期待.html">查看详情 →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 浙菜 - 龙井虾仁 -->
+        <div class="menu-card">
+          <img src="../images/龙井虾仁.jpg" alt="龙井虾仁" class="card-img" />
+          <div class="card-content">
+            <div class="card-title">
+              <span>龙井虾仁</span>
+              <span class="card-tag">浙菜</span>
+            </div>
+            <p class="card-desc">
+              杭州特色菜，新鲜虾仁搭配明前龙井，清香扑鼻，虾仁滑嫩，茶味浓郁。
+            </p>
+            <div class="card-footer">
+              <span>¥98/份</span>
+              <a href="敬请期待.html">查看详情 →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 湘菜 - 剁椒鱼头 -->
+        <div class="menu-card">
+          <img src="../images/剁椒鱼头.jpg" alt="剁椒鱼头" class="card-img" />
+          <div class="card-content">
+            <div class="card-title">
+              <span>剁椒鱼头</span>
+              <span class="card-tag">湘菜</span>
+              <span class="card-tag" style="background: #ff4444">热门</span>
+            </div>
+            <p class="card-desc">
+              湘菜灵魂菜品，鳙鱼头配湖南剁椒蒸制，鲜辣入味，肉质细嫩，汤汁可拌面。
+            </p>
+            <div class="card-footer">
+              <span>¥88/份</span>
+              <a href="敬请期待.html">查看详情 →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 闽菜 - 佛跳墙 -->
+        <div class="menu-card">
+          <img src="../images/佛跳墙.jpg" alt="佛跳墙" class="card-img" />
+          <div class="card-content">
+            <div class="card-title">
+              <span>佛跳墙</span>
+              <span class="card-tag">闽菜</span>
+              <span class="card-tag" style="background: #aa00ff">高端</span>
+            </div>
+            <p class="card-desc">
+              闽菜之王，海参、鲍鱼、鱼翅等十余种食材煨制，汤汁醇厚，营养丰富，香气浓郁。
+            </p>
+            <div class="card-footer">
+              <span>¥268/份</span>
+              <a href="敬请期待.html">查看详情 →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 徽菜 - 臭鳜鱼 -->
+        <div class="menu-card">
+          <img src="../images/臭鳜鱼.jpg" alt="臭鳜鱼" class="card-img" />
+          <div class="card-content">
+            <div class="card-title">
+              <span>臭鳜鱼</span>
+              <span class="card-tag">徽菜</span>
+            </div>
+            <p class="card-desc">
+              徽菜特色，鳜鱼发酵后闻臭吃香，肉质紧实，搭配笋片烧制，鲜咸适口。
+            </p>
+            <div class="card-footer">
+              <span>¥78/份</span>
+              <a href="敬请期待.html">查看详情 →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <p>Copyright 2025, Beijing, China | 独家菜单出品，侵权必究</p>
+    </div>
+  </body>
+</html>
