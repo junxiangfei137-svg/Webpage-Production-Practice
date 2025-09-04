@@ -1,0 +1,112 @@
+/* 唐诗风格.css */
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/tang.bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #f8f8f8;
+    font-family: "SimSun", "宋体", serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+    color: #e6c9a0;
+    text-align: center;
+    font-weight: normal;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+p {
+    margin: 15px 0;
+    text-align: center;
+}
+
+.poem {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 25px 0;
+    border-left: 4px solid #b8860b;
+}
+
+.poem p {
+    text-align: left;
+    text-indent: 2em;
+    margin: 10px 0;
+    line-height: 2;
+}
+
+a {
+    color: #d4c095;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #f8d568;
+    text-decoration: underline;
+}
+
+.navigation {
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+.author {
+    font-style: italic;
+    text-align: center;
+    color: #c9b18f;
+    margin-bottom: 25px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(230, 201, 160, 0.5), transparent);
+    margin: 30px 0;
+}
+
+.copyright {
+    text-align: center;
+    font-size: 0.9em;
+    color: #999;
+    margin-top: 40px;
+}
+
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    border: 5px solid #b8860b;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}

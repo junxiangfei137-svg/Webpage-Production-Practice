@@ -1,0 +1,6 @@
+body {
+  background-image: url("./images/index.jpg");   /* 图片路径换成自己的 */
+  background-size: cover;            /* 铺满整个视口 */
+  background-repeat: no-repeat;
+  background-position: center;
+}

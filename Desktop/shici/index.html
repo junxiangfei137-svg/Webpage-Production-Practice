@@ -1,0 +1,34 @@
+<html>
+<head>
+    <title>唐诗宋词网首页</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<audio id="bgm" src="TypeD-理想境 (Ideal Realm).flac" loop autoplay preload="auto"></audio>
+
+<!-- 可选：给访客一个开关按钮 -->
+<button onclick="toggleBGM()">🎵 音乐开关</button>
+
+<script>
+function toggleBGM() {
+  const a = document.getElementById('bgm');
+  a.paused ? a.play() : a.pause();
+}
+</script>
+
+<p>&nbsp;</p> <!--  这种用来增加页面空白的方法在学习了CSS之后要废弃 -->
+<p>&nbsp;</p>
+<h1 align="center"> <a href="tangshi/index.html">唐诗</a> | <a href="songci/index.html">宋词</a></h1>
+<!--  宋词页面在本书中暂不制作，所以使用#表示这是一个空页面，需要未来增加 -->
+<p>&nbsp;</p>
+<h3 align="center">开发团队：BB游戏制作商</h3>
+<p align="center"><img src="images/themes.png" width="500" /></p>
+<!-- <img>标记符的width属性可以控制图像的显示大小，详见第4章。此处注意在根目录下建立一个images文件夹，并将theme.jpg文件放到该文件夹 -->
+<p>&nbsp;</p>
+<hr size="1" width="80%">
+<p align="center">&copy; 版权所有
+<a href="mailto:someone@263.net">someone@263.net</a></p>
+<!--  将<a>标记符的href属性指定为“mailto:电子邮件地址”的形式，可以创建电子邮件链接。单击这种超链接时，会启动系统默认的电子邮件客户端程序。-->
+</body>
+</html>
