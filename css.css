@@ -1,0 +1,217 @@
+body {
+  background-color: #f5f5f5;
+  background-image: url("images/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 20px 0;
+}
+
+#box {
+  text-align: center;
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: beige;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#nav {
+  /* 字体优化：加粗+更和谐的行高 */
+  font: bold 32px/1.8em "楷体", "KaiTi", serif;
+  background: linear-gradient(
+    135deg,
+    #87cefa 0%,
+    #4682b4 100%
+  ); /* 渐变色背景 */
+  padding: 12px 0;
+  margin: 20px 0;
+  border-radius: 8px; /* 更大圆角更柔和 */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15); /* 增加立体阴影 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* 为导航添加细微的顶部高光，增强质感 */
+#nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+}
+
+#nav a {
+  color: #fff; /* 白色文字更醒目 */
+  margin: 0 20px; /* 增加间距 */
+  padding: 8px 12px; /* 扩大点击区域 */
+  border-radius: 4px; /* 链接本身也加圆角 */
+  transition: all 0.3s ease; /* 平滑过渡效果 */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 文字阴影增强立体感 */
+}
+
+#nav a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2); /* 悬停时的半透明白色背景 */
+  text-decoration: none; /* 取消下划线，用背景变化代替 */
+  transform: translateY(-2px); /* 轻微上浮效果 */
+}
+
+#nav a {
+  margin: 0 15px;
+  color: #333;
+  transition: all 0.3s;
+}
+
+#nav a:hover {
+  color: red;
+}
+
+#bread {
+  border-bottom: 1px black dotted;
+  padding: 10px 3px;
+  text-align: left;
+  font-size: 14px;
+  color: black;
+  margin-bottom: 20px;
+}
+
+#bread a.active {
+  color: red;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+/* 标题样式优化 */
+h1 {
+  font: bold 42px/1.5em "黑体", "SimHei", sans-serif; /* 加粗字体增强存在感 */
+  color: #222; /* 稍深颜色提升厚重感 */
+  margin: 40px 0 30px; /* 调整上下间距 */
+  letter-spacing: 3px; /* 增加字间距更舒展 */
+  text-align: center; /* 居中显示 */
+  position: relative;
+  padding-bottom: 15px; /* 为下划线预留空间 */
+}
+
+/* 为h1添加底部装饰线 */
+h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 900px; /* 短线装饰 */
+  height: 3px;
+  background: #ff6b6b; /* 用亮色点缀 */
+  border-radius: 2px;
+}
+
+h2 {
+  width: 60%;
+  border-bottom: 2px solid #eee; /* 浅色底边框更柔和 */
+  margin: 40px auto 25px;
+  padding-bottom: 12px;
+  font-size: 26px;
+  color: #333;
+  text-align: center;
+  position: relative;
+}
+
+/* 为h2添加小型图标装饰 */
+h2::before {
+  content: "❖"; /* 可替换为其他符号或图标 */
+  color: #6c5ce7; /* 主题色点缀 */
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+/* 响应式调整标题大小 */
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 34px;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    font-size: 22px;
+    width: 80%;
+  }
+}
+
+p {
+  font-family: 楷体;
+  font-size: 16px;
+  color: black;
+
+  line-height: 1.8;
+  margin: 10px 0;
+}
+
+.intro {
+  font-family: 楷体;
+  font-size: 17px;
+  width: 60%;
+  margin: 20px auto;
+  text-align: left;
+  color: black; /* 稍深颜色提升可读性 */
+  line-height: 2; /* 增加行高更易读 */
+}
+
+.intro p {
+  margin-bottom: 18px;
+  text-indent: 2em; /* 首行缩进，增强排版感 */
+}
+
+.banner {
+  width: 100%;
+  max-width: 850px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+.pics {
+  width: 350px;
+  height: 515px;
+  margin: 15px auto;
+  border: 5px solid #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+}
+
+.pics:hover {
+  transform: scale(1.02);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: red;
+}
+
+#footer {
+  font-size: small;
+  color: black;
+  margin-top: 50px;
+  padding: 20px 0;
+  border-top: 1px solid #ddd;
+}
+
+.lastline {
+  margin-bottom: 2em;
+}
