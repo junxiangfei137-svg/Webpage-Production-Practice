@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>王者荣耀赛事资讯 - 游戏专栏 - 游戏天地</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../../css/pages.css" />
+    <style>
+      /* 赛事资讯特有样式 */
+      .wzry-header {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+      }
+
+      .match-schedule {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+
+      .schedule-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .schedule-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .match-filters {
+        display: flex;
+        gap: 10px;
+      }
+
+      .match-filter-btn {
+        padding: 5px 12px;
+        border-radius: 20px;
+        background-color: #f8f9fa;
+        border: none;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .match-filter-btn.active {
+        background-color: #ff6b6b;
+        color: white;
+      }
+
+      .match-card {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .match-card:hover {
+        transform: translateY(-3px);
+      }
+
+      .match-status {
+        min-width: 80px;
+        text-align: center;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin-right: 1rem;
+      }
+
+      .status-upcoming {
+        background-color: #e3f2fd;
+        color: #0d6efd;
+      }
+
+      .status-live {
+        background-color: #ffebee;
+        color: #dc3545;
+        animation: pulse 1.5s infinite;
+      }
+
+      .status-completed {
+        background-color: #e8f5e9;
+        color: #28a745;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      .match-time {
+        min-width: 120px;
+        text-align: center;
+        margin-right: 1.5rem;
+        color: #6c757d;
+      }
+
+      .match-teams {
+        flex: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .team {
+        display: flex;
+        align-items: center;
+      }
+
+      .team-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+      }
+
+      .team-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .team-name {
+        font-weight: bold;
+      }
+
+      .match-vs {
+        margin: 0 1.5rem;
+        font-weight: bold;
+        color: #6c757d;
+      }
+
+      .match-score {
+        font-size: 1.2rem;
+        font-weight: bold;
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .match-details {
+        margin-left: 1.5rem;
+        color: #6c757d;
+        font-size: 0.9rem;
+      }
+
+      .match-tournament {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-top: 5px;
+      }
+
+      .news-section {
+        margin-bottom: 3rem;
+      }
+
+      .news-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .news-img {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .news-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .news-card:hover .news-img img {
+        transform: scale(1.05);
+      }
+
+      .news-content {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-date {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .news-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+        flex: 1;
+      }
+
+      .news-excerpt {
+        color: #6c757d;
+        margin-bottom: 1rem;
+        font-size: 0.95rem;
+      }
+
+      .news-tag {
+        display: inline-block;
+        padding: 3px 8px;
+        background-color: #f1f1f1;
+        color: #6c757d;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+
+      .standings-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .standings-table th,
+      .standings-table td {
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      .standings-table thead {
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #f1f1f1;
+      }
+
+      .standings-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+
+      .standings-table .team-rank {
+        font-weight: bold;
+        width: 50px;
+      }
+
+      .standings-table .team-info {
+        display: flex;
+        align-items: center;
+      }
+
+      .standings-table .team-info img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      .standings-table .team-points {
+        font-weight: bold;
+      }
+
+      .tournament-banner {
+        position: relative;
+        height: 300px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+
+      .tournament-banner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .tournament-banner-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        padding: 1.5rem;
+        color: white;
+      }
+
+      .tournament-banner-title {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .tournament-banner-desc {
+        font-size: 0.95rem;
+        opacity: 0.9;
+      }
+
+      .highlight-match {
+        background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+      }
+
+      .highlight-match-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+
+      .highlight-match-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .highlight-match-time {
+        color: #b3b3b3;
+        font-size: 0.9rem;
+      }
+
+      .highlight-match-teams {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+      }
+
+      .highlight-team {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .highlight-team-logo {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        border: 2px solid white;
+      }
+
+      .highlight-team-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .highlight-team-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .highlight-match-vs {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #b3b3b3;
+        margin: 0 2rem;
+      }
+
+      .highlight-match-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .highlight-match-actions .btn {
+        padding: 0.75rem 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 完整导航栏结构（包含所有必要组件） -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- 1. Logo区域（可选，但建议保留，保持页面一致性） -->
+        <a class="navbar-brand" href="../../index.html">
+          <img
+            src="../../images/logo.png"
+            alt="游戏天地"
+            class="logo logo-responsive"
+          />
+        </a>
+
+        <!-- 2. 移动端汉堡按钮（必须，否则小屏幕无法展开导航） -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          <!--
+          与下方collapse的id对应
+          --
+        >
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 3. 您原有的菜单列表（保留并嵌入到完整结构中） -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 游戏专栏（路径：三级页面→游戏专栏，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏专栏/index.html"
+                id="navbarDropdown1"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                🎮 游戏专栏
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/仙剑奇侠传/index.html"
+                  >仙剑奇侠传</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/古剑奇谭/index.html"
+                  >古剑奇谭</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/王者荣耀/index.html"
+                  >王者荣耀</a
+                >
+              </div>
+            </li>
+
+            <!-- 游戏资讯（当前栏目，active类，路径：三级页面→游戏资讯首页，向上一级） -->
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../index.html"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📰 游戏资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" href="../../游戏资讯/新闻/index.html"
+                  >最新新闻</a
+                >
+                <a class="dropdown-item" href="../../游戏资讯/攻略/index.html"
+                  >精品攻略</a
+                >
+                <!-- 修复：原路径"index.html"改为"../攻略/index.html"，匹配实际目录 -->
+                <a class="dropdown-item" href="../../游戏资讯/活动/index.html"
+                  >活动中心</a
+                >
+                <!-- 修复：当前活动中心页面，用"index.html"（同目录） -->
+              </div>
+            </li>
+
+            <!-- 游戏研究（路径：三级页面→游戏研究，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏研究/index.html"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📖 游戏研究
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/设计分析/index.html"
+                  >设计分析</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/性能优化/index.html"
+                  >性能优化</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/AI交互研究/index.html"
+                  >AI/交互研究</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- 面包屑 -->
+    <div class="container-fluid padding" id="bread">
+      <a href="../../index.html">首页</a> &gt;
+      <a href="../../游戏专栏/index.html">游戏专栏</a> &gt;
+      <a href="./index.html">王者荣耀</a> &gt;
+      <strong>赛事资讯</strong>
+    </div>
+
+    <!-- 页面头部 -->
+    <section class="page-header py-10 wzry-header text-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1 class="display-4">赛事资讯</h1>
+            <p class="lead">追踪最新赛事动态，观看精彩比赛，了解战队排名</p>
+            <div class="mt-4">
+              <a href="index.html" class="btn btn-light mr-3">返回主页</a>
+              <a href="英雄图鉴.html" class="btn btn-outline-light">英雄图鉴</a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img
+              src="../../images/games/wzry-logo.png"
+              alt="王者荣耀LOGO"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 主要赛事 banner -->
+    <section class="tournament-banner-section py-8">
+      <div class="container">
+        <div class="tournament-banner">
+          <img
+            src="../../images/wzry/match2.jpg"
+            alt="2024王者荣耀世界冠军杯"
+          />
+          <div class="tournament-banner-content">
+            <div class="tournament-banner-title">2024王者荣耀世界冠军杯</div>
+            <div class="tournament-banner-desc">
+              9月10日正式开赛 · 16支全球顶尖战队 · 1000万美元奖金池
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 焦点赛事 -->
+    <section class="highlight-match-section py-6">
+      <div class="container">
+        <div class="highlight-match">
+          <div class="highlight-match-header">
+            <div class="highlight-match-title">焦点赛事</div>
+            <div class="highlight-match-time">9月15日 19:00</div>
+          </div>
+          <div class="highlight-match-teams">
+            <div class="highlight-team">
+              <div class="highlight-team-logo">
+                <img src="../../images/wzry/teams/ag.png" alt="成都AG超玩会" />
+              </div>
+              <div class="highlight-team-name">成都AG超玩会</div>
+              <div>胜率: 68%</div>
+            </div>
+            <div class="highlight-match-vs">VS</div>
+            <div class="highlight-team">
+              <div class="highlight-team-logo">
+                <img src="../../images/wzry/teams/wolf.png" alt="重庆狼队" />
+              </div>
+              <div class="highlight-team-name">重庆狼队</div>
+              <div>胜率: 72%</div>
+            </div>
+          </div>
+          <div class="highlight-match-actions">
+            <button class="btn btn-primary">预约直播</button>
+            <button class="btn btn-outline-light">查看历史交锋</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 赛程安排 -->
+    <section class="match-schedule-section py-10 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">赛事赛程</h2>
+
+        <div class="match-schedule">
+          <div class="schedule-header">
+            <div class="schedule-title">2024王者荣耀世界冠军杯 - 小组赛</div>
+            <div class="match-filters">
+              <button class="match-filter-btn active" data-filter="all">
+                全部
+              </button>
+              <button class="match-filter-btn" data-filter="today">今天</button>
+              <button class="match-filter-btn" data-filter="tomorrow">
+                明天
+              </button>
+              <button class="match-filter-btn" data-filter="week">本周</button>
+            </div>
+          </div>
+
+          <!-- 正在进行的比赛 -->
+          <div class="match-card" id="kpl-2024-summer">
+            <div class="match-status status-live">直播中</div>
+            <div class="match-time">15:30</div>
+            <div class="match-teams">
+              <div class="team">
+                <div class="team-logo">
+                  <img
+                    src="../../images/wzry/teams/estar.png"
+                    alt="武汉eStarPro"
+                  />
+                </div>
+                <div class="team-name">武汉eStarPro</div>
+              </div>
+              <div class="match-vs">VS</div>
+              <div class="team">
+                <div class="team-name">南京Hero久竞</div>
+                <div class="team-logo">
+                  <img
+                    src="../../images/wzry/teams/hero.png"
+                    alt="南京Hero久竞"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="match-score">1 - 0</div>
+            <div class="match-details">
+              <div>小组赛 A组</div>
+              <div class="match-tournament">2024王者荣耀世界冠军杯</div>
+            </div>
+          </div>
+
+          <!-- 即将开始的比赛 -->
+          <div class="match-card">
+            <div class="match-status status-upcoming">即将开始</div>
+            <div class="match-time">19:00</div>
+            <div class="match-teams">
+              <div class="team">
+                <div class="team-logo">
+                  <img src="../../images/wzry/teams/ttg.png" alt="广州TTG" />
+                </div>
+                <div class="team-name">广州TTG</div>
+              </div>
+              <div class="match-vs">VS</div>
+              <div class="team">
+                <div class="team-name">XYG</div>
+                <div class="team-logo">
+                  <img src="../../images/wzry/teams/xyg.png" alt="XYG" />
+                </div>
+              </div>
+            </div>
+            <div class="match-score">-</div>
+            <div class="match-details">
+              <div>小组赛 B组</div>
+              <div class="match-tournament">2024王者荣耀世界冠军杯</div>
+            </div>
+          </div>
+
+          <!-- 明天的比赛 -->
+          <div class="match-card">
+            <div class="match-status status-upcoming">明日</div>
+            <div class="match-time">14:00</div>
+            <div class="match-teams">
+              <div class="team">
+                <div class="team-logo">
+                  <img
+                    src="../../images/wzry/teams/ag.png"
+                    alt="成都AG超玩会"
+                  />
+                </div>
+                <div class="team-name">成都AG超玩会</div>
+              </div>
+              <div class="match-vs">VS</div>
+              <div class="team">
+                <div class="team-name">GEN.G</div>
+                <div class="team-logo">
+                  <img src="../../images/wzry/teams/geng.png" alt="GEN.G" />
+                </div>
+              </div>
+            </div>
+            <div class="match-score">-</div>
+            <div class="match-details">
+              <div>小组赛 C组</div>
+              <div class="match-tournament">2024王者荣耀世界冠军杯</div>
+            </div>
+          </div>
+
+          <div class="match-card">
+            <div class="match-status status-upcoming">明日</div>
+            <div class="match-time">17:00</div>
+            <div class="match-teams">
+              <div class="team">
+                <div class="team-logo">
+                  <img src="../../images/wzry/teams/wolf.png" alt="重庆狼队" />
+                </div>
+                <div class="team-name">重庆狼队</div>
+              </div>
+              <div class="match-vs">VS</div>
+              <div class="team">
+                <div class="team-name">Sentinels</div>
+                <div class="team-logo">
+                  <img
+                    src="../../images/wzry/teams/sentinels.png"
+                    alt="Sentinels"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="match-score">-</div>
+            <div class="match-details">
+              <div>小组赛 D组</div>
+              <div class="match-tournament">2024王者荣耀世界冠军杯</div>
+            </div>
+          </div>
+
+          <!-- 已完成的比赛 -->
+          <div class="match-card">
+            <div class="match-status status-completed">已结束</div>
+            <div class="match-time">昨天 19:00</div>
+            <div class="match-teams">
+              <div class="team">
+                <div class="team-logo">
+                  <img
+                    src="../../images/wzry/teams/ag.png"
+                    alt="成都AG超玩会"
+                  />
+                </div>
+                <div class="team-name">成都AG超玩会</div>
+              </div>
+              <div class="match-vs">VS</div>
+              <div class="team">
+                <div class="team-name">重庆狼队</div>
+                <div class="team-logo">
+                  <img src="../../images/wzry/teams/wolf.png" alt="重庆狼队" />
+                </div>
+              </div>
+            </div>
+            <div class="match-score">4 - 2</div>
+            <div class="match-details">
+              <div>夏季赛 总决赛</div>
+              <div class="match-tournament">2024KPL职业联赛</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-6">
+          <a href="#" class="btn wzry-btn">查看完整赛程</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 新闻 -->
+    <section class="tournament-news py-10">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">新闻</h2>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-6" id="world-championship-2024">
+            <div class="news-card">
+              <div class="news-img">
+                <img
+                  src="../../images/wzry/match2.jpg"
+                  alt="2024王者荣耀世界冠军杯分组出炉"
+                />
+              </div>
+              <div class="news-content">
+                <div class="news-date">2024-08-25</div>
+                <h5 class="news-title">
+                  2024王者荣耀世界冠军杯分组出炉，16支战队竞逐
+                </h5>
+                <p class="news-excerpt">
+                  2024王者荣耀世界冠军杯分组抽签仪式于8月24日举行，来自全球的16支顶尖战队分为四个小组，将在9月10日正式开赛。
+                </p>
+                <div>
+                  <span class="news-tag">世界冠军杯</span>
+                  <span class="news-tag">分组结果</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-6">
+            <div class="news-card">
+              <div class="news-img">
+                <img
+                  src="../../images/wzry/match1.jpg"
+                  alt="成都AG超玩会夺得2024KPL夏季赛冠军"
+                />
+              </div>
+              <div class="news-content">
+                <div class="news-date">2024-08-19</div>
+                <h5 class="news-title">
+                  成都AG超玩会4-2战胜重庆狼队，夺得2024KPL夏季赛冠军
+                </h5>
+                <p class="news-excerpt">
+                  在万众瞩目的KPL夏季赛总决赛中，成都AG超玩会以4-2的比分战胜重庆狼队，时隔三年再度捧起冠军奖杯。AG选手一诺获得总决赛MVP。
+                </p>
+                <div>
+                  <span class="news-tag">KPL</span>
+                  <span class="news-tag">总决赛</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-6" id="dunhuang-collaboration">
+            <div class="news-card">
+              <div class="news-img">
+                <img
+                  src="../../images/wzry/dunhuang.jpg"
+                  alt="王者荣耀与敦煌博物馆联动"
+                />
+              </div>
+              <div class="news-content">
+                <div class="news-date">2024-08-15</div>
+                <h5 class="news-title">
+                  王者荣耀x敦煌博物馆联动活动开启，限定皮肤即将上线
+                </h5>
+                <p class="news-excerpt">
+                  王者荣耀与敦煌博物馆开启深度合作，推出"飞天逐梦"系列活动，杨玉环限定皮肤「飞天·反弹琵琶
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+  <!-- 页脚 -->
+  <footer class="bg-dark text-white py-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h4>游戏天地</h4>
+          <p>致力于为游戏爱好者提供优质的游戏内容和深度研究</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4>快速链接</h4>
+          <ul class="footer-links">
+            <li><a href="../../游戏专栏/index.html">游戏专栏</a></li>
+            <li><a href="../../游戏资讯/index.html">游戏资讯</a></li>
+            <li><a href="../../游戏研究/index.html">游戏研究</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <h4>联系我们</h4>
+          <p>邮箱: contact@gameworld.com</p>
+          <p>微信: GameWorld2023</p>
+        </div>
+      </div>
+      <div class="border-top border-gray-700 mt-4 pt-4 text-center">
+        <p>&copy; 2025 游戏天地 - 探索游戏的无限可能</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+  <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/common.js"></script>
+</html>

@@ -1,0 +1,389 @@
+/* CSS Document */
+/* 全局过渡效果设置 - 使所有元素变化更平滑 */
+* {
+  transition: all 0.3s ease-in-out;
+}
+
+/* 基础样式重置 */
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 主导航 */
+nav {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+nav a {
+  position: relative;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0.25rem;
+}
+
+nav a:hover {
+  /* 下划线从中间向两边展开的效果 */
+  color: #f8f9fa;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #f8f9fa;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+nav a:hover::after {
+  width: 80%;
+}
+
+nav #current {
+  color: white;
+  font-weight: bold;
+}
+
+nav #current::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 80%;
+  height: 2px;
+  background-color: #f8f9fa;
+  transform: translateX(-50%);
+}
+
+/* 面包屑&二级导航 */
+#bread {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  font: 12px/1.5 宋体;
+  padding: 12px 16px;
+  margin-bottom: 2rem;
+  border-radius: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#bread a {
+  color: #6c757d;
+  position: relative;
+  padding: 0 3px;
+}
+
+#bread a:hover {
+  color: #007bff;
+  font-weight: bold;
+}
+
+#bread #second-nav {
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+#bread #second-nav a {
+  display: inline-block;
+  padding: 3px 8px;
+  margin-right: 5px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+#bread #second-nav a:hover {
+  transform: translateY(1px);
+  background-color: #dee2e6;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 页脚样式优化 */
+footer {
+  background: #1a1a1a;
+  color: #b3b3b3;
+  padding: 4rem 0 2rem;
+  position: relative;
+  margin-top: 5rem;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ff6b6b, #7b4397);
+}
+
+footer h4 {
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+footer h4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #ff6b6b;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+  color: #b3b3b3;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 0;
+}
+
+.footer-links a:hover {
+  color: #ff6b6b;
+  padding-left: 5px;
+}
+
+.footer-links a::before {
+  content: "→";
+  position: absolute;
+  left: -15px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.footer-links a:hover::before {
+  opacity: 1;
+  left: -10px;
+}
+
+footer .border-top {
+  border-color: #333333 !important;
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+footer .text-center p {
+  color: #808080;
+  font-size: 0.9rem;
+}
+
+/* 英雄区样式 */
+.hero {
+  height: 80vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: white;
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4rem;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/hero-bg.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-img {
+  animation: float 6s ease-in-out infinite;
+  opacity: 0;
+  animation: fadeInUp 1s ease forwards 0.3s, float 6s ease-in-out infinite 1s;
+}
+
+/* 渐入上浮动画 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* 栏目卡片样式 */
+.category-section {
+  padding: 3rem 0;
+  margin-bottom: 2rem;
+}
+
+.category-card {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  margin: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.category-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+  transform: scale(1.1);
+}
+
+/* 研究栏目样式 */
+.research-section {
+  padding: 3rem 0;
+  background-color: #f9fafb;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+}
+
+.research-card {
+  background: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  height: 100%;
+  border-top: 4px solid #007bff;
+  margin: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.research-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.research-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #007bff;
+}
+
+.research-links {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.research-links li {
+  margin: 0.8rem 0;
+}
+
+.research-links a {
+  color: #333;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.research-links a:hover {
+  color: #007bff;
+  padding-left: 5px;
+  border-left: 2px solid #007bff;
+}
+
+/* 内容区块通用样式 */
+.content-section {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  border-top: 3px solid #007bff;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .logo-responsive {
+    width: 50px;
+    height: auto;
+  }
+
+  nav a,
+  footer {
+    font-size: smaller;
+  }
+
+  .hero {
+    height: auto;
+    padding: 4rem 0;
+  }
+
+  .hero-img {
+    margin-top: 2rem;
+  }
+
+  .category-card,
+  .research-card {
+    padding: 1.5rem;
+    margin: 0.5rem 0;
+  }
+
+  .content-section {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  #bread {
+    padding: 10px;
+    font-size: 11px;
+  }
+}

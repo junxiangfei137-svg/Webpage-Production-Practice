@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>王者荣耀英雄图鉴 - 游戏专栏 - 游戏天地</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../../css/pages.css" />
+    <style>
+      /* 英雄图鉴特有样式 */
+      .wzry-header {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+      }
+
+      .hero-filter {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+      }
+
+      .filter-btn {
+        margin: 0.5rem;
+        padding: 0.5rem 1.2rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+        border: none;
+      }
+
+      .filter-btn.active {
+        background-color: #ff6b6b;
+        color: white;
+      }
+
+      .filter-btn:not(.active) {
+        background-color: #f8f9fa;
+        color: #495057;
+      }
+
+      .filter-btn:hover:not(.active) {
+        background-color: #e9ecef;
+      }
+
+      .hero-card {
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 2rem;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .hero-card-img {
+        height: 180px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .hero-card:hover .hero-card-img img {
+        transform: scale(1.05);
+      }
+
+      .hero-tag {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        color: white;
+      }
+
+      .hero-card-body {
+        padding: 1.2rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hero-card h5 {
+        margin-bottom: 0.8rem;
+        font-weight: bold;
+      }
+
+      .hero-desc {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        flex: 1;
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+        font-size: 0.85rem;
+      }
+
+      .stat-bar {
+        height: 6px;
+        background-color: #e9ecef;
+        border-radius: 3px;
+        width: 60%;
+        overflow: hidden;
+      }
+
+      .stat-fill {
+        height: 100%;
+        background-color: #ff6b6b;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto;
+      }
+
+      /* 英雄详情模态框 */
+      .hero-modal .modal-dialog {
+        max-width: 900px;
+      }
+
+      .hero-modal-header {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+        color: white;
+        border-radius: 0;
+      }
+
+      .hero-detail-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 3px solid white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin-right: 1.5rem;
+      }
+
+      .hero-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-main-info h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .ability-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1.5rem;
+      }
+
+      .ability-item {
+        text-align: center;
+      }
+
+      .ability-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 0.5rem;
+        font-size: 1.5rem;
+      }
+
+      .ability-name {
+        font-weight: bold;
+        margin-bottom: 0.3rem;
+      }
+
+      .ability-desc {
+        font-size: 0.85rem;
+        color: #6c757d;
+      }
+
+      .build-guide {
+        margin-top: 2rem;
+      }
+
+      .build-item {
+        display: flex;
+        margin-bottom: 1rem;
+      }
+
+      .build-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-right: 1rem;
+      }
+
+      .build-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .build-info h6 {
+        margin-bottom: 0.2rem;
+      }
+
+      .build-info p {
+        font-size: 0.85rem;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 完整导航栏结构（包含所有必要组件） -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- 1. Logo区域（可选，但建议保留，保持页面一致性） -->
+        <a class="navbar-brand" href="../../index.html">
+          <img
+            src="../../images/logo.png"
+            alt="游戏天地"
+            class="logo logo-responsive"
+          />
+        </a>
+
+        <!-- 2. 移动端汉堡按钮（必须，否则小屏幕无法展开导航） -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          <!--
+          与下方collapse的id对应
+          --
+        >
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 3. 您原有的菜单列表（保留并嵌入到完整结构中） -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 游戏专栏（路径：三级页面→游戏专栏，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏专栏/index.html"
+                id="navbarDropdown1"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                🎮 游戏专栏
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/仙剑奇侠传/index.html"
+                  >仙剑奇侠传</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/古剑奇谭/index.html"
+                  >古剑奇谭</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/王者荣耀/index.html"
+                  >王者荣耀</a
+                >
+              </div>
+            </li>
+
+            <!-- 游戏资讯（当前栏目，active类，路径：三级页面→游戏资讯首页，向上一级） -->
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../index.html"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📰 游戏资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" href="../../游戏资讯/新闻/index.html"
+                  >最新新闻</a
+                >
+                <a class="dropdown-item" href="../../游戏资讯/攻略/index.html"
+                  >精品攻略</a
+                >
+                <!-- 修复：原路径"index.html"改为"../攻略/index.html"，匹配实际目录 -->
+                <a class="dropdown-item" href="../../游戏资讯/活动/index.html"
+                  >活动中心</a
+                >
+                <!-- 修复：当前活动中心页面，用"index.html"（同目录） -->
+              </div>
+            </li>
+
+            <!-- 游戏研究（路径：三级页面→游戏研究，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏研究/index.html"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📖 游戏研究
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/设计分析/index.html"
+                  >设计分析</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/性能优化/index.html"
+                  >性能优化</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/AI交互研究/index.html"
+                  >AI/交互研究</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 面包屑 -->
+    <div class="container-fluid padding" id="bread">
+      <a href="../../index.html">首页</a> &gt;
+      <a href="../../游戏专栏/index.html">游戏专栏</a> &gt;
+      <a href="./index.html">王者荣耀</a> &gt;
+      <strong>英雄图鉴</strong>
+    </div>
+
+    <!-- 页面头部 -->
+    <section class="page-header py-10 wzry-header text-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1 class="display-4">英雄图鉴</h1>
+            <p class="lead">
+              探索百位英雄的独特技能与玩法，找到属于你的本命英雄
+            </p>
+            <div class="mt-4">
+              <a href="index.html" class="btn btn-light mr-3">返回主页</a>
+              <a href="赛事资讯.html" class="btn btn-outline-light">查看赛事</a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img
+              src="../../images/games/wzry-logo.png"
+              alt="王者荣耀LOGO"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 英雄筛选 -->
+    <section class="hero-filter-section py-8">
+      <div class="container">
+        <div class="hero-filter">
+          <div class="row">
+            <div class="col-md-3">
+              <h5>按类型筛选：</h5>
+            </div>
+            <div class="col-md-9">
+              <button class="filter-btn active" data-filter="all">
+                全部英雄
+              </button>
+              <button class="filter-btn" data-filter="warrior" id="warrior">
+                战士
+              </button>
+              <button class="filter-btn" data-filter="mage" id="mage">
+                法师
+              </button>
+              <button class="filter-btn" data-filter="archer" id="archer">
+                射手
+              </button>
+              <button class="filter-btn" data-filter="assassin" id="assassin">
+                刺客
+              </button>
+              <button class="filter-btn" data-filter="tank" id="tank">
+                坦克
+              </button>
+              <button class="filter-btn" data-filter="support" id="support">
+                辅助
+              </button>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-md-3">
+              <h5>按...排序：</h5>
+            </div>
+            <div class="col-md-9">
+              <button class="filter-btn active" data-sort="popular">
+                热门优先
+              </button>
+              <button class="filter-btn" data-sort="winrate">
+                胜率从高到低
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 英雄列表 -->
+    <section class="hero-list py-10 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">全部英雄</h2>
+
+        <div class="row">
+          <!-- 战士英雄 -->
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item warrior"
+            data-popular="95"
+            data-winrate="52.3"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/huamulan.jpg" alt="花木兰" />
+                <span class="hero-tag tag-warrior">战士</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>花木兰</h5>
+                <p class="hero-desc">
+                  双形态战士，可切换轻重剑攻击，具有强大的连招能力和单挑能力。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 70%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="huamulan"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item warrior"
+            data-popular="90"
+            data-winrate="51.7"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/liubei.jpg" alt="刘备" />
+                <span class="hero-tag tag-warrior">战士</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>刘备</h5>
+                <p class="hero-desc">
+                  擅长打野的战士英雄，近距离高爆发，大招提供护盾和伤害免疫。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 75%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 60%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="liubei"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T1</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 法师英雄 -->
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item mage"
+            data-popular="97"
+            data-winrate="53.1"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/diaochan.jpg" alt="貂蝉" />
+                <span class="hero-tag tag-mage">法师</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>貂蝉</h5>
+                <p class="hero-desc">
+                  机动性极强的法师，技能可频繁位移，真实伤害让坦克也难以承受。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 60%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="diaochan"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item mage"
+            data-popular="88"
+            data-winrate="50.9"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/wuzetian.jpg" alt="武则天" />
+                <span class="hero-tag tag-mage">法师</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>武则天</h5>
+                <p class="hero-desc">
+                  荣耀水晶专属英雄，全图大招支援，控制能力强，团队增益效果显著。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 55%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 70%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="wuzetian"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T1</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 射手英雄 -->
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item archer"
+            data-popular="98"
+            data-winrate="51.5"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/luban7.jpg" alt="鲁班七号" />
+                <span class="hero-tag tag-archer">射手</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>鲁班七号</h5>
+                <p class="hero-desc">
+                  可爱外形的射手，被动技能提供扫射效果，后期伤害极高但生存能力较弱。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 40%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 50%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="luban7"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T1</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item archer"
+            data-popular="92"
+            data-winrate="52.7"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/yuji.jpg" alt="虞姬" />
+                <span class="hero-tag tag-archer">射手</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>虞姬</h5>
+                <p class="hero-desc">
+                  具有物理免疫能力的射手，二技能可躲避致命伤害，适合应对物理刺客。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 60%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 65%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="yuji"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 刺客英雄 -->
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item assassin"
+            data-popular="94"
+            data-winrate="50.8"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/hanxin.jpg" alt="韩信" />
+                <span class="hero-tag tag-assassin">刺客</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>韩信</h5>
+                <p class="hero-desc">
+                  机动性极强的刺客，多段位移适合打野带节奏，后期可带线牵制敌人。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 85%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 50%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="hanxin"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T1</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item assassin"
+            data-popular="89"
+            data-winrate="51.2"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img
+                  src="../../images/wzry/heroes/bailixuance.jpg"
+                  alt="百里玄策"
+                />
+                <span class="hero-tag tag-assassin">刺客</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>百里玄策</h5>
+                <p class="hero-desc">
+                  钩子型刺客，勾中后可将敌人拉向自己，大招提供短距离位移和伤害。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 55%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="bailixuance"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T2</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 坦克英雄 -->
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item tank"
+            data-popular="87"
+            data-winrate="53.5"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/zhangfei.jpg" alt="张飞" />
+                <span class="hero-tag tag-tank">坦克</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>张飞</h5>
+                <p class="hero-desc">
+                  强势开团型坦克，大招可变身增加巨额生命值，提供范围眩晕和击退。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 60%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 95%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 55%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="zhangfei"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item tank"
+            data-popular="82"
+            data-winrate="52.1"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/xiangyu.jpg" alt="项羽" />
+                <span class="hero-tag tag-tank">坦克</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>项羽</h5>
+                <p class="hero-desc">
+                  抗压能力强的坦克，被动提供伤害减免，技能具有强大的控制效果。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 65%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 90%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 45%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="xiangyu"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T1</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 辅助英雄 -->
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item support"
+            data-popular="91"
+            data-winrate="54.2"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/daqiao.jpg" alt="大乔" />
+                <span class="hero-tag tag-support">辅助</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>大乔</h5>
+                <p class="hero-desc">
+                  既能保护又能开团的辅助，大招可召唤队友，团战能力极强。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 55%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 80%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 70%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="daqiao"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-3 col-md-4 col-sm-6 hero-item support"
+            data-popular="85"
+            data-winrate="52.8"
+          >
+            <div class="hero-card">
+              <div class="hero-card-img">
+                <img src="../../images/wzry/heroes/sunbin.jpg" alt="孙膑" />
+                <span class="hero-tag tag-support">辅助</span>
+              </div>
+              <div class="hero-card-body">
+                <h5>孙膑</h5>
+                <p class="hero-desc">
+                  团队增益型辅助，二技能提供加速和回血，大招可沉默敌人并造成范围伤害。
+                </p>
+                <div class="hero-stats">
+                  <span>攻击</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 50%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>生存</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 70%"></div>
+                  </div>
+                </div>
+                <div class="hero-stats">
+                  <span>难度</span>
+                  <div class="stat-bar">
+                    <div class="stat-fill" style="width: 65%"></div>
+                  </div>
+                </div>
+                <div class="hero-actions">
+                  <button
+                    class="btn btn-sm btn-primary view-hero"
+                    data-hero="sunbin"
+                  >
+                    查看详情
+                  </button>
+                  <span class="text-success"
+                    ><i class="fas fa-trophy"></i> T1</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 分页 -->
+        <div class="text-center mt-8">
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">上一页</a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+
+              <li class="page-item">
+                <a class="page-link" href="#">下一页</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </section>
+
+    <!-- 英雄详情模态框 -->
+    <div
+      class="modal fade hero-modal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="heroModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header hero-modal-header">
+            <h5 class="modal-title" id="heroModalLabel">英雄详情</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="hero-detail-header">
+              <div class="hero-avatar">
+                <img
+                  src="../../images/wzry/heroes/huamulan.jpg"
+                  alt="花木兰"
+                  id="modal-hero-avatar"
+                />
+              </div>
+              <div class="hero-main-info">
+                <h3 id="modal-hero-name">花木兰</h3>
+                <div>
+                  <span class="hero-tag tag-warrior mr-2" id="modal-hero-tag"
+                    >战士</span
+                  >
+                  <span class="text-success" id="modal-hero-tier"
+                    ><i class="fas fa-trophy"></i> T0 级英雄</span
+                  >
+                </div>
+                <p class="mt-2" id="modal-hero-desc">
+                  双形态战士，可切换轻重剑攻击，具有强大的连招能力和单挑能力。
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <h5>技能介绍</h5>
+                <div class="ability-grid">
+                  <div class="ability-item">
+                    <div class="ability-icon">
+                      <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="ability-name">长城巡守者（被动）</div>
+                    <div class="ability-desc">
+                      切换形态时清除普攻冷却，轻剑形态增加攻速和移动速度，重剑形态造成范围伤害并获得免伤。
+                    </div>
+                  </div>
+                  <div class="ability-item">
+                    <div class="ability-icon">
+                      <i class="fas fa-battle-net"></i>
+                    </div>
+                    <div class="ability-name">空裂斩（一技能）</div>
+                    <div class="ability-desc">
+                      轻剑：向前突进，对路径敌人造成伤害。重剑：挥动重剑，对范围内敌人造成伤害并减速。
+                    </div>
+                  </div>
+                  <div class="ability-item">
+                    <div class="ability-icon">
+                      <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <div class="ability-name">旋舞之华（二技能）</div>
+                    <div class="ability-desc">
+                      轻剑：快速旋转攻击，对范围内敌人造成伤害并叠加印记。重剑：持续旋转攻击，可造成高额伤害和击退。
+                    </div>
+                  </div>
+                  <div class="ability-item">
+                    <div class="ability-icon">
+                      <i class="fas fa-explosion"></i>
+                    </div>
+                    <div class="ability-name">绽放刀锋（三技能）</div>
+                    <div class="ability-desc">
+                      切换轻重剑形态，轻剑转重剑时对周围敌人造成伤害和短暂击飞，重剑转轻剑时提升移动速度。
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <h5>推荐出装</h5>
+                <div class="build-guide">
+                  <div class="build-item">
+                    <div class="build-icon">
+                      <img
+                        src="../../images/wzry/items/defense1.jpg"
+                        alt="抵抗之靴"
+                      />
+                    </div>
+                    <div class="build-info">
+                      <h6>抵抗之靴</h6>
+                      <p>+110法术防御 +60移动速度 +35%韧性</p>
+                    </div>
+                  </div>
+                  <div class="build-item">
+                    <div class="build-icon">
+                      <img
+                        src="../../images/wzry/items/attack1.jpg"
+                        alt="暗影战斧"
+                      />
+                    </div>
+                    <div class="build-info">
+                      <h6>暗影战斧</h6>
+                      <p>+85物理攻击 +15%冷却缩减 +500最大生命</p>
+                    </div>
+                  </div>
+                  <div class="build-item">
+                    <div class="build-icon">
+                      <img
+                        src="../../images/wzry/items/defense2.jpg"
+                        alt="不祥征兆"
+                      />
+                    </div>
+                    <div class="build-info">
+                      <h6>不祥征兆</h6>
+                      <p>+270物理防御 +1200最大生命</p>
+                    </div>
+                  </div>
+                  <div class="build-item">
+                    <div class="build-icon">
+                      <img
+                        src="../../images/wzry/items/defense3.jpg"
+                        alt="魔女斗篷"
+                      />
+                    </div>
+                    <div class="build-info">
+                      <h6>魔女斗篷</h6>
+                      <p>+360法术防御 +1000最大生命</p>
+                    </div>
+                  </div>
+                  <div class="build-item">
+                    <div class="build-icon">
+                      <img
+                        src="../../images/wzry/items/attack2.jpg"
+                        alt="破军"
+                      />
+                    </div>
+                    <div class="build-info">
+                      <h6>破军</h6>
+                      <p>+180物理攻击</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <h5>使用技巧</h5>
+              <ul>
+                <li>
+                  花木兰的核心是熟练掌握轻重剑形态切换，轻剑负责快速连招和叠加印记，重剑负责爆发伤害和控制。
+                </li>
+                <li>重剑形态下释放技能时可以通过拖动方向键调整攻击方向。</li>
+                <li>
+                  对抗花木兰时，要注意躲避她的重剑二技能，这是她的主要伤害和控制来源。
+                </li>
+                <li>
+                  花木兰在释放重剑技能时不能移动，这是她的弱点，可以抓住这个时机进行反击。
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              关闭
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4>游戏天地</h4>
+            <p>致力于为游戏爱好者提供优质的游戏内容和深度研究</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4>快速链接</h4>
+            <ul class="footer-links">
+              <li><a href="../../游戏专栏/index.html">游戏专栏</a></li>
+              <li><a href="../../游戏资讯/index.html">游戏资讯</a></li>
+              <li><a href="../../游戏研究/index.html">游戏研究</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>联系我们</h4>
+            <p>邮箱: contact@gameworld.com</p>
+            <p>微信: GameWorld2023</p>
+          </div>
+        </div>
+        <div class="border-top border-gray-700 mt-4 pt-4 text-center">
+          <p>&copy; 2025 游戏天地 - 探索游戏的无限可能</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+      // 英雄筛选功能
+      document.addEventListener("DOMContentLoaded", function () {
+        // 筛选按钮点击事件
+        const filterBtns = document.querySelectorAll(
+          ".filter-btn[data-filter]"
+        );
+        filterBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            // 移除所有筛选按钮的active类
+            filterBtns.forEach((b) => b.classList.remove("active"));
+            // 给当前点击的按钮添加active类
+            this.classList.add("active");
+
+            const filter = this.getAttribute("data-filter");
+            const heroItems = document.querySelectorAll(".hero-item");
+
+            // 筛选英雄
+            heroItems.forEach((item) => {
+              if (filter === "all" || item.classList.contains(filter)) {
+                item.style.display = "block";
+              } else {
+                item.style.display = "none";
+              }
+            });
+          });
+        });
+
+        // 排序按钮点击事件
+        const sortBtns = document.querySelectorAll(".filter-btn[data-sort]");
+        sortBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            // 移除所有排序按钮的active类
+            sortBtns.forEach((b) => b.classList.remove("active"));
+            // 给当前点击的按钮添加active类
+            this.classList.add("active");
+
+            const sortType = this.getAttribute("data-sort");
+            const heroList = document.querySelector(".hero-list .row");
+            const heroItems = Array.from(
+              document.querySelectorAll(
+                '.hero-item:not([style*="display: none"])'
+              )
+            );
+
+            // 根据不同类型排序
+            if (sortType === "popular") {
+              heroItems.sort((a, b) => {
+                return (
+                  b.getAttribute("data-popular") -
+                  a.getAttribute("data-popular")
+                );
+              });
+            } else if (sortType === "winrate") {
+              heroItems.sort((a, b) => {
+                return (
+                  b.getAttribute("data-winrate") -
+                  a.getAttribute("data-winrate")
+                );
+              });
+            }
+
+            // 重新排列DOM元素
+            heroItems.forEach((item) => {
+              heroList.appendChild(item);
+            });
+          });
+        });
+
+        // 英雄详情按钮点击事件
+        const viewHeroBtns = document.querySelectorAll(".view-hero");
+        viewHeroBtns.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const heroName = this.getAttribute("data-hero");
+            // 这里可以根据英雄名称加载不同的英雄详情
+            // 为简化，这里只做基本演示
+            $(".hero-modal").modal("show");
+          });
+        });
+
+        // 页面加载时如果有hash，自动筛选
+        if (window.location.hash) {
+          const hash = window.location.hash.substring(1);
+          const targetBtn = document.querySelector(
+            `.filter-btn[data-filter="${hash}"]`
+          );
+          if (targetBtn) {
+            targetBtn.click();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>王者荣耀版本更新 - 游戏专栏 - 游戏天地</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../../css/pages.css" />
+    <style>
+      /* 版本更新特有样式 */
+      .wzry-header {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+      }
+
+      .update-timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .update-timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: #f1f1f1;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 3px;
+      }
+
+      .update-container {
+        padding: 10px 40px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+        margin-bottom: 3rem;
+      }
+
+      .update-container::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        right: -10px;
+        background-color: white;
+        border: 4px solid #ff6b6b;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .update-left {
+        left: 0;
+      }
+
+      .update-right {
+        left: 50%;
+      }
+
+      .update-left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid white;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent white;
+      }
+
+      .update-right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid white;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent white transparent transparent;
+      }
+
+      .update-right::after {
+        left: -10px;
+      }
+
+      .update-content {
+        padding: 20px;
+        background-color: white;
+        position: relative;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .update-version {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ff6b6b;
+        margin-bottom: 0.5rem;
+      }
+
+      .update-date {
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+
+      .update-section {
+        margin-bottom: 1.5rem;
+      }
+
+      .update-section h5 {
+        margin-bottom: 0.8rem;
+        color: #343a40;
+        font-weight: bold;
+      }
+
+      .update-hero {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid #f1f1f1;
+      }
+
+      .update-hero:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .update-hero-avatar {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 1rem;
+      }
+
+      .update-hero-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .update-hero-info h6 {
+        margin-bottom: 0.3rem;
+        font-weight: bold;
+      }
+
+      .update-hero-changes {
+        font-size: 0.9rem;
+      }
+
+      .change-buff {
+        color: #28a745;
+      }
+
+      .change-nerf {
+        color: #dc3545;
+      }
+
+      .update-badge {
+        display: inline-block;
+        padding: 3px 8px;
+        background-color: #ff6b6b;
+        color: white;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+
+      .version-selector {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 3rem;
+      }
+
+      .version-selector h4 {
+        margin-bottom: 1rem;
+      }
+
+      .version-btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        border-radius: 4px;
+        background-color: #f8f9fa;
+        color: #495057;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .version-btn:hover {
+        background-color: #e9ecef;
+        color: #495057;
+        text-decoration: none;
+      }
+
+      .version-btn.active {
+        background-color: #ff6b6b;
+        color: white;
+      }
+
+      @media screen and (max-width: 768px) {
+        .update-timeline::after {
+          left: 31px;
+        }
+
+        .update-container {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .update-container::before {
+          left: 60px;
+          border: medium solid white;
+          border-width: 10px 10px 10px 0;
+          border-color: transparent white transparent transparent;
+        }
+
+        .update-left::after,
+        .update-right::after {
+          left: 21px;
+        }
+
+        .update-right {
+          left: 0%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 完整导航栏结构（包含所有必要组件） -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- 1. Logo区域（可选，但建议保留，保持页面一致性） -->
+        <a class="navbar-brand" href="../../index.html">
+          <img
+            src="../../images/logo.png"
+            alt="游戏天地"
+            class="logo logo-responsive"
+          />
+        </a>
+
+        <!-- 2. 移动端汉堡按钮（必须，否则小屏幕无法展开导航） -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          <!--
+          与下方collapse的id对应
+          --
+        >
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 3. 您原有的菜单列表（保留并嵌入到完整结构中） -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 游戏专栏（路径：三级页面→游戏专栏，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏专栏/index.html"
+                id="navbarDropdown1"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                🎮 游戏专栏
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/仙剑奇侠传/index.html"
+                  >仙剑奇侠传</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/古剑奇谭/index.html"
+                  >古剑奇谭</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/王者荣耀/index.html"
+                  >王者荣耀</a
+                >
+              </div>
+            </li>
+
+            <!-- 游戏资讯（当前栏目，active类，路径：三级页面→游戏资讯首页，向上一级） -->
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../index.html"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📰 游戏资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" href="../../游戏资讯/新闻/index.html"
+                  >最新新闻</a
+                >
+                <a class="dropdown-item" href="../../游戏资讯/攻略/index.html"
+                  >精品攻略</a
+                >
+                <!-- 修复：原路径"index.html"改为"../攻略/index.html"，匹配实际目录 -->
+                <a class="dropdown-item" href="../../游戏资讯/活动/index.html"
+                  >活动中心</a
+                >
+                <!-- 修复：当前活动中心页面，用"index.html"（同目录） -->
+              </div>
+            </li>
+
+            <!-- 游戏研究（路径：三级页面→游戏研究，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏研究/index.html"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📖 游戏研究
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/设计分析/index.html"
+                  >设计分析</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/性能优化/index.html"
+                  >性能优化</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/AI交互研究/index.html"
+                  >AI/交互研究</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 面包屑 -->
+    <div class="container-fluid padding" id="bread">
+      <a href="../../index.html">首页</a> &gt;
+      <a href="../../游戏专栏/index.html">游戏专栏</a> &gt;
+      <a href="./index.html">王者荣耀</a> &gt;
+      <strong>版本更新</strong>
+    </div>
+
+    <!-- 页面头部 -->
+    <section class="page-header py-10 wzry-header text-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1 class="display-4">版本更新</h1>
+            <p class="lead">追踪游戏最新变化，了解英雄调整与版本趋势</p>
+            <div class="mt-4">
+              <a href="./index.html" class="btn btn-light mr-3">返回主页</a>
+              <a href="./英雄图鉴.html" class="btn btn-outline-light"
+                >英雄图鉴</a
+              >
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img
+              src="../../images/games/wzry-logo.png"
+              alt="王者荣耀LOGO"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 版本选择器 -->
+    <section class="version-selector-section py-8">
+      <div class="container">
+        <div class="version-selector">
+          <h4>选择版本：</h4>
+          <div>
+            <a href="#s45-1-0-3" class="version-btn active"
+              >S45.1.0.3 - 2025/09/05</a
+            >
+            <a href="#s45-1-0-2" class="version-btn">S45.1.0.2 - 2025/08/22</a>
+            <a href="#s45-1-0-1" class="version-btn">S45.1.0.1 - 2025/08/08</a>
+            <a href="#s45-1-0-0" class="version-btn">S45.1.0.0 - 2025/07/25</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 版本更新时间线 -->
+    <section class="update-history py-10 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">版本更新历史</h2>
+
+        <div class="update-timeline">
+          <!-- S45.1.0.3版本 -->
+          <div class="update-container update-right" id="s45-1-0-3">
+            <div class="update-content">
+              <div class="update-version">版本 S45.1.0.3</div>
+              <span class="update-date">2025年9月5日 更新</span>
+              <span class="update-badge">平衡调整</span>
+              <span class="update-badge">新英雄</span>
+              <span class="update-badge">装备调整</span>
+
+              <div class="update-section">
+                <h5>新英雄登场</h5>
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/heroes/zhulong.jpg"
+                      alt="烛龙"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>烛龙</h6>
+                    <div class="update-hero-changes">
+                      <p>全新法师英雄"烛龙"上线，拥有独特的视野控制能力：</p>
+                      <ul>
+                        <li>
+                          <strong>被动-烛照四方</strong
+                          >：烛龙的技能会照亮指定区域，暴露敌方单位3秒
+                        </li>
+                        <li>
+                          <strong>一技能-龙息</strong
+                          >：向前喷射火焰，对路径敌人造成法术伤害
+                        </li>
+                        <li>
+                          <strong>二技能-烛影</strong
+                          >：在指定位置生成持续4秒的烛火，范围内的敌人受到持续伤害并被减速
+                        </li>
+                        <li>
+                          <strong>三技能-破晓</strong
+                          >：短暂蓄力后，照亮大范围区域并造成巨额法术伤害，被命中的敌人会被暴露6秒
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="update-section">
+                <h5>英雄调整</h5>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/heroes/yunzhongjun.jpg"
+                      alt="云中君"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>云中君</h6>
+                    <div class="update-hero-changes">
+                      <p>
+                        <span class="change-buff">↑ 基础生命值提升120点</span>
+                      </p>
+                      <p>
+                        <span class="change-buff"
+                          >↑ 大招冷却时间减少3秒（满级后）</span
+                        >
+                      </p>
+                      <p>
+                        调整说明：提升云中君在后期团战的生存能力，使其在切入后有更多操作空间。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/heroes/diaochan.jpg"
+                      alt="貂蝉"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>貂蝉</h6>
+                    <div class="update-hero-changes">
+                      <p><span class="change-nerf">↓ 二技能伤害降低3%</span></p>
+                      <p>
+                        <span class="change-buff">↑ 技能回复效果提升15%</span>
+                      </p>
+                      <p>
+                        调整说明：略微降低貂蝉的爆发能力，但提升其持续作战和续航能力，鼓励更持续的输出方式。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img src="../../images/wzry/heroes/hanxin.jpg" alt="韩信" />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>韩信</h6>
+                    <div class="update-hero-changes">
+                      <p>
+                        <span class="change-buff">↑ 一技能位移距离增加15%</span>
+                      </p>
+                      <p>
+                        <span class="change-nerf">↓ 基础攻击力降低3点</span>
+                      </p>
+                      <p>
+                        调整说明：增强韩信的机动性和逃生能力，略微降低其前期作战能力，使其更偏向于打野带节奏。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="update-section">
+                <h5>装备调整</h5>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/items/lightning.jpg"
+                      alt="闪电匕首"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>闪电匕首</h6>
+                    <div class="update-hero-changes">
+                      <p>
+                        <span class="change-nerf">↓ 暴击率从12%降低至8%</span>
+                      </p>
+                      <p><span class="change-buff">↑ 增加8%移动速度</span></p>
+                      <p>
+                        调整说明：降低射手英雄的暴击收益，转而提升其机动性，使其在面对刺客时有更多生存机会。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/items/defense2.jpg"
+                      alt="不祥征兆"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>不祥征兆</h6>
+                    <div class="update-hero-changes">
+                      <p><span class="change-buff">↑ 价格降低150金币</span></p>
+                      <p><span class="change-nerf">↓ 物理防御降低10点</span></p>
+                      <p>
+                        调整说明：略微降低防御属性，但降低价格使其更容易在前期合成，帮助坦克英雄更快成型。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/items/newitem.jpg"
+                      alt="万象天工"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>新装备-万象天工</h6>
+                    <div class="update-hero-changes">
+                      <p>新增辅助装备，价格2000金币</p>
+                      <p>属性：+1000最大生命，+10%冷却缩减，+100物理防御</p>
+                      <p>被动-协力：为周围友方英雄提供8%冷却缩减</p>
+                      <p>
+                        主动-天工：为指定友方英雄增加一个吸收伤害的护盾，并提升其15%移动速度，持续3秒，冷却60秒
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="update-section">
+                <h5>玩法调整</h5>
+                <ul>
+                  <li>
+                    新增"峡谷迷雾"模式，每周五至周日开放，增加视野策略元素
+                  </li>
+                  <li>
+                    暴君刷新时间从4分钟调整为5分钟，击杀后获得的增益效果提升
+                  </li>
+                  <li>优化打野刀机制，增加对远程英雄的适配性</li>
+                  <li>修复部分英雄技能特效显示异常的问题</li>
+                  <li>优化部分机型的卡顿问题</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- S45.1.0.2版本 -->
+          <div class="update-container update-left" id="s45-1-0-2">
+            <div class="update-content">
+              <div class="update-version">版本 S45.1.0.2</div>
+              <span class="update-date">2025年8月22日 更新</span>
+              <span class="update-badge">平衡调整</span>
+              <span class="update-badge">活动更新</span>
+
+              <div class="update-section">
+                <h5>英雄调整</h5>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/heroes/luban7.jpg"
+                      alt="鲁班七号"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>鲁班七号</h6>
+                    <div class="update-hero-changes">
+                      <p>
+                        <span class="change-buff">↑ 被动扫射伤害提升5%</span>
+                      </p>
+                      <p>
+                        <span class="change-nerf">↓ 三技能冷却时间增加2秒</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/heroes/zhangfei.jpg"
+                      alt="张飞"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>张飞</h6>
+                    <div class="update-hero-changes">
+                      <p>
+                        <span class="change-nerf"
+                          >↓ 大招变身持续时间减少1秒</span
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="update-section">
+                <h5>活动更新</h5>
+                <ul>
+                  <li>开启"夏日狂欢"活动，完成任务可获得限定皮肤体验卡</li>
+                  <li>新增"累计登录"奖励，登录7天可获得永久英雄自选礼盒</li>
+                  <li>KPL夏季赛助威活动上线，预测比赛结果可获得积分兑换奖励</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- S45.1.0.1版本 -->
+          <div class="update-container update-right" id="s45-1-0-1">
+            <div class="update-content">
+              <div class="update-version">版本 S45.1.0.1</div>
+              <span class="update-date">2025年8月8日 更新</span>
+              <span class="update-badge">平衡调整</span>
+              <span class="update-badge">BUG修复</span>
+
+              <div class="update-section">
+                <h5>英雄调整</h5>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img
+                      src="../../images/wzry/heroes/huamulan.jpg"
+                      alt="花木兰"
+                    />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>花木兰</h6>
+                    <div class="update-hero-changes">
+                      <p>
+                        <span class="change-buff"
+                          >↑ 重剑形态免伤效果提升5%</span
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="update-hero">
+                  <div class="update-hero-avatar">
+                    <img src="../../images/wzry/heroes/yuji.jpg" alt="虞姬" />
+                  </div>
+                  <div class="update-hero-info">
+                    <h6>虞姬</h6>
+                    <div class="update-hero-changes">
+                      <p>
+                        <span class="change-nerf"
+                          >↓ 二技能物理免疫持续时间减少0.2秒</span
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="update-section">
+                <h5>BUG修复</h5>
+                <ul>
+                  <li>修复了武则天大招有时无法命中目标的问题</li>
+                  <li>修复了部分情况下兵线不会自动推进的问题</li>
+                  <li>修复了特定机型下技能按钮偶尔失灵的问题</li>
+                  <li>修复了荣耀水晶抽取动画显示异常的问题</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- S45.1.0.0版本 -->
+          <div class="update-container update-left" id="s45-1-0-0">
+            <div class="update-content">
+              <div class="update-version">版本 S45.1.0.0</div>
+              <span class="update-date">2025年7月25日 更新</span>
+              <span class="update-badge">赛季更新</span>
+              <span class="change-buff">新皮肤</span>
+              <span class="update-badge">系统优化</span>
+
+              <div class="update-section">
+                <h5>S45赛季开启</h5>
+                <p>全新赛季"星河入梦"正式开启，带来以下更新：</p>
+                <ul>
+                  <li>段位继承规则调整，增加了段位保护机制</li>
+                  <li>新增"星元皮肤"系统，可自定义英雄外观细节</li>
+                  <li>优化了匹配机制，减少了同队玩家段位差距过大的情况</li>
+                  <li>新增5款赛季限定皮肤，通过赛季任务获取</li>
+                </ul>
+              </div>
+
+              <div class="update-section">
+                <h5>新皮肤上线</h5>
+                <ul>
+                  <li>孙悟空-齐天大圣（传说级）</li>
+                  <li>貂蝉-仲夏夜之梦（星传说）</li>
+                  <li>亚瑟-狮心王（赛季限定）</li>
+                  <li>孙膑-未来旅行（勇者级）</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 版本更新公告 -->
+    <section class="update-notice py-10">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="card">
+              <div class="card-header bg-primary text-white">
+                <h4>更新公告</h4>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">关于S45.1.0.3版本更新的说明</h5>
+                <p class="card-text">
+                  本次更新将于2025年9月5日0:30-6:30进行停机维护，维护期间将无法登录游戏。维护完成后，所有玩家将获得88钻石+3个皮肤碎片的补偿。
+                </p>
+
+                <h5 class="mt-4">更新方式</h5>
+                <p>
+                  本次为强制更新，玩家需在应用商店下载最新版本客户端才能进入游戏。
+                </p>
+
+                <h5 class="mt-4">常见问题</h5>
+                <ul>
+                  <li>
+                    <strong>Q: 更新后数据会丢失吗？</strong><br />
+                    A:
+                    不会，所有游戏数据均保存在服务器，更新后不会影响玩家数据。
+                  </li>
+                  <li>
+                    <strong>Q: 新英雄烛龙如何获取？</strong><br />
+                    A:
+                    烛龙可通过金币（13888金币）、钻石（588钻石）或英雄碎片（58个）兑换。
+                  </li>
+                  <li>
+                    <strong>Q: 维护补偿何时发放？</strong><br />
+                    A: 维护补偿将在更新后24小时内发放至游戏内邮箱，请注意查收。
+                  </li>
+                </ul>
+
+                <h5 class="mt-4">反馈渠道</h5>
+                <p>如在游戏中遇到任何问题，可通过以下方式反馈：</p>
+                <ul>
+                  <li>游戏内设置-客服中心</li>
+                  <li>王者荣耀官方微信公众号</li>
+                  <li>王者荣耀官方论坛</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4>游戏天地</h4>
+            <p>致力于为游戏爱好者提供优质的游戏内容和深度研究</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4>快速链接</h4>
+            <ul class="footer-links">
+              <li><a href="../../游戏专栏/index.html">游戏专栏</a></li>
+              <li><a href="../../游戏资讯/index.html">游戏资讯</a></li>
+              <li><a href="../../游戏研究/index.html">游戏研究</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>联系我们</h4>
+            <p>邮箱: contact@gameworld.com</p>
+            <p>微信: GameWorld2023</p>
+          </div>
+        </div>
+        <div class="border-top border-gray-700 mt-4 pt-4 text-center">
+          <p>&copy; 2025 游戏天地 - 探索游戏的无限可能</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 版本按钮点击事件
+        const versionBtns = document.querySelectorAll(".version-btn");
+        versionBtns.forEach((btn) => {
+          btn.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // 移除所有按钮的active类
+            versionBtns.forEach((b) => b.classList.remove("active"));
+            // 给当前点击的按钮添加active类
+            this.classList.add("active");
+
+            // 滚动到对应的版本位置
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 100,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+
+        // 页面加载时如果有hash，自动选中对应的版本
+        if (window.location.hash) {
+          const hash = window.location.hash;
+          const targetBtn = document.querySelector(
+            `.version-btn[href="${hash}"]`
+          );
+          if (targetBtn) {
+            targetBtn.click();
+          }
+        } else {
+          // 默认选中第一个版本
+          versionBtns[0].click();
+        }
+      });
+    </script>
+  </body>
+</html>

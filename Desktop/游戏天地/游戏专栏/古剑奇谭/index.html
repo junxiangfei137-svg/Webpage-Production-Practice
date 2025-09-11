@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>古剑奇谭 - 游戏专栏 - 游戏天地</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../../css/pages.css" />
+    <style>
+      /* 古剑奇谭专栏特有样式 */
+      .gujian-header {
+        background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
+      }
+
+      .gujian-card {
+        border-top: 4px solid #2e7d32;
+      }
+
+      .gujian-btn {
+        background-color: #2e7d32;
+        border-color: #2e7d32;
+      }
+
+      .gujian-btn:hover {
+        background-color: #1b5e20;
+        border-color: #1b5e20;
+      }
+
+      /* 世界观节点样式 */
+      .world-view {
+        position: relative;
+        height: 450px;
+        background-color: #f1f8e9;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      .world-node {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+        z-index: 2;
+      }
+
+      .world-node:hover {
+        transform: scale(1.1);
+        z-index: 10;
+      }
+
+      .node-label {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        font-weight: bold;
+        font-size: 0.9rem;
+      }
+
+      /* 连接线条 - 使用CSS绘制简单的连接线 */
+      .world-view::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        width: 60%;
+        height: 4px;
+        background-color: #a5d6a7;
+        z-index: 1;
+      }
+
+      .world-view::after {
+        content: "";
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        width: 4px;
+        height: 40%;
+        background-color: #a5d6a7;
+        z-index: 1;
+      }
+
+      /* 角色关系图样式 */
+      .relation-graph {
+        background-color: #f1f8e9;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+      }
+
+      /* 音乐专辑样式 */
+      .music-album {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .music-album:hover {
+        transform: translateY(-5px);
+      }
+
+      .album-cover {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .album-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .music-album:hover .album-cover img {
+        transform: scale(1.05);
+      }
+
+      .album-info {
+        padding: 15px;
+        text-align: center;
+      }
+
+      .album-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .album-tracks {
+        padding: 0 15px 15px;
+      }
+
+      .track-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid #f0f0f0;
+      }
+
+      .track-item:last-child {
+        border-bottom: none;
+      }
+
+      /* 游戏对比表格样式 */
+      .comparison-table th {
+        background-color: #2e7d32;
+        color: white;
+        text-align: center;
+      }
+
+      .comparison-table td {
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      .comparison-table tr:nth-child(even) {
+        background-color: #f1f8e9;
+      }
+
+      /* 开发日志时间线样式 */
+      .dev-timeline {
+        position: relative;
+        padding-left: 30px;
+      }
+
+      .dev-timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: #4caf50;
+        border-radius: 2px;
+      }
+
+      .dev-entry {
+        position: relative;
+        margin-bottom: 30px;
+        padding-bottom: 10px;
+      }
+
+      .dev-entry::before {
+        content: "";
+        position: absolute;
+        left: -34px;
+        top: 0;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: white;
+        border: 4px solid #2e7d32;
+      }
+
+      .dev-date {
+        font-weight: bold;
+        color: #2e7d32;
+        margin-bottom: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 完整导航栏结构（包含所有必要组件） -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- 1. Logo区域（可选，但建议保留，保持页面一致性） -->
+        <a class="navbar-brand" href="../../index.html">
+          <img
+            src="../../images/logo.png"
+            alt="游戏天地"
+            class="logo logo-responsive"
+          />
+        </a>
+
+        <!-- 2. 移动端汉堡按钮（必须，否则小屏幕无法展开导航） -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          <!--
+          与下方collapse的id对应
+          --
+        >
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 3. 您原有的菜单列表（保留并嵌入到完整结构中） -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 游戏专栏（路径：三级页面→游戏专栏，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏专栏/index.html"
+                id="navbarDropdown1"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                🎮 游戏专栏
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/仙剑奇侠传/index.html"
+                  >仙剑奇侠传</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/古剑奇谭/index.html"
+                  >古剑奇谭</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/王者荣耀/index.html"
+                  >王者荣耀</a
+                >
+              </div>
+            </li>
+
+            <!-- 游戏资讯（当前栏目，active类，路径：三级页面→游戏资讯首页，向上一级） -->
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../index.html"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📰 游戏资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" href="../../游戏资讯/新闻/index.html"
+                  >最新新闻</a
+                >
+                <a class="dropdown-item" href="../../游戏资讯/攻略/index.html"
+                  >精品攻略</a
+                >
+                <!-- 修复：原路径"index.html"改为"../攻略/index.html"，匹配实际目录 -->
+                <a class="dropdown-item" href="../../游戏资讯/活动/index.html"
+                  >活动中心</a
+                >
+                <!-- 修复：当前活动中心页面，用"index.html"（同目录） -->
+              </div>
+            </li>
+
+            <!-- 游戏研究（路径：三级页面→游戏研究，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏研究/index.html"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📖 游戏研究
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/设计分析/index.html"
+                  >设计分析</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/性能优化/index.html"
+                  >性能优化</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/AI交互研究/index.html"
+                  >AI/交互研究</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- 面包屑 -->
+    <div class="container-fluid padding" id="bread">
+      <a href="../../index.html">首页</a> &gt;
+      <a href="../../游戏专栏/index.html">游戏专栏</a> &gt;
+      <strong>古剑奇谭</strong>
+    </div>
+
+    <!-- 页面头部 -->
+    <section class="page-header py-10 gujian-header text-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1 class="display-4">古剑奇谭</h1>
+            <p class="lead">
+              传承中华传统文化，打造东方奇幻世界的国产RPG经典。
+            </p>
+          </div>
+          <div class="col-md-4 text-center">
+            <img
+              src="../../images/gujian.jpg"
+              alt="古剑奇谭LOGO"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 游戏简介 -->
+    <section class="game-intro py-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-8">
+            <h2 class="section-title mb-6">系列简介</h2>
+            <p>
+              《古剑奇谭》是由北京软星科技有限公司开发的国产单机角色扮演游戏系列，首部作品《古剑奇谭：琴心剑魄今何在》于2010年7月上市，是继《仙剑奇侠传》之后又一备受瞩目的国产RPG经典。
+            </p>
+            <p>
+              系列以中国神话传说为背景，构建了一个宏大而细腻的东方奇幻世界，融合了中国传统文化元素与现代游戏设计理念。游戏以深刻的剧情、精美的画面、独特的战斗系统和出色的音乐著称。
+            </p>
+
+            <div class="mt-6">
+              <h5>系列核心亮点：</h5>
+              <ul class="list-group mt-3">
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-book text-success mr-3"></i>
+                  宏大深邃的世界观设定
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-palette text-primary mr-3"></i>
+                  精致唯美的美术风格
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-fist-raised text-warning mr-3"></i>
+                  创新独特的战斗系统
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-heart text-danger mr-3"></i>
+                  感人至深的角色故事
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最新动态 -->
+    <section class="latest-news py-12 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">最新动态</h2>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-6">
+            <div class="card h-100 gujian-card shadow-sm">
+              <img
+                src="../../images/gujian/news1.jpg"
+                class="card-img-top"
+                alt="古剑奇谭四正式公布"
+              />
+              <div class="card-body">
+                <h3 class="card-title">
+                  《古剑奇谭四》正式公布，2025年12月开启预售
+                </h3>
+                <p class="text-muted">2025-07-18</p>
+                <p>
+                  北京软星在2025年ChinaJoy展会上正式公布了《古剑奇谭四》，游戏采用全新引擎开发，预计2026年第一季度上市，2025年12月开启预售。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-6">
+            <div class="card h-100 gujian-card shadow-sm">
+              <img
+                src="../../images/gujian/news2.jpg"
+                class="card-img-center"
+                alt="古剑奇谭三主机版"
+              />
+              <img
+                src="../../images/gujian/news2(2).jpg"
+                class="card-img-center"
+                alt="古剑奇谭三主机版"
+              />
+              <div class="card-body">
+                <h3 class="card-title">
+                  《古剑奇谭三》主机版将于2025年10月登陆PS5和Xbox Series X/S
+                </h3>
+                <p class="text-muted">2025-06-05</p>
+                <p>
+                  官方宣布《古剑奇谭三：梦付千秋星垂野》主机版将于2025年10月同步登陆PS5和Xbox
+                  Series X/S平台，支持4K/60帧，新增拍照模式和服装DLC。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-6">
+            <div class="card h-100 gujian-card shadow-sm">
+              <img
+                src="../../images/gujian/news3.jpg"
+                class="card-img-top"
+                alt="古剑奇谭动画"
+              />
+              <div class="card-body">
+                <h3 class="card-title">
+                  《古剑奇谭》系列动画化项目启动，预计2026年播出
+                </h3>
+                <p class="text-muted">2025-05-20</p>
+                <p>
+                  北京软星与国内顶级动画工作室合作，正式启动《古剑奇谭》系列动画化项目，将以《古剑奇谭二》为蓝本改编，预计2026年第三季度开播。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 世界观概览 -->
+    <section class="world-overview py-12">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">世界观概览</h2>
+
+        <div class="row mb-10">
+          <div class="col-lg-12">
+            <p class="text-center mb-8">
+              古剑奇谭系列构建了一个包含人、神、仙、妖、鬼等多个种族的宏大世界，以下是世界观中的核心构成部分：
+            </p>
+
+            <div class="world-view">
+              <div
+                class="world-node"
+                style="top: 50%; left: 20%; transform: translate(-50%, -50%)"
+              >
+                <i class="fas fa-globe-asia fa-2x text-success"></i>
+                <div class="node-label">人间</div>
+              </div>
+
+              <div
+                class="world-node"
+                style="top: 50%; left: 50%; transform: translate(-50%, -50%)"
+              >
+                <i class="fas fa-mountain fa-2x text-success"></i>
+                <div class="node-label">魔域</div>
+              </div>
+
+              <div
+                class="world-node"
+                style="top: 50%; left: 80%; transform: translate(-50%, -50%)"
+              >
+                <i class="fas fa-cloud fa-2x text-success"></i>
+                <div class="node-label">天界</div>
+              </div>
+
+              <div
+                class="world-node"
+                style="top: 30%; left: 50%; transform: translate(-50%, -50%)"
+              >
+                <i class="fas fa-star fa-2x text-success"></i>
+                <div class="node-label">星海</div>
+              </div>
+
+              <div
+                class="world-node"
+                style="top: 70%; left: 50%; transform: translate(-50%, -50%)"
+              >
+                <i class="fas fa-fire fa-2x text-success"></i>
+                <div class="node-label">幽冥</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <h3 class="text-center mb-6">世界观核心概念</h3>
+            <div class="dev-timeline">
+              <div class="dev-entry">
+                <div class="dev-date">灵与气</div>
+                <p>
+                  世间万物皆由"灵"与"气"构成，灵为精神与意识，气为物质基础。生灵通过修炼可以提升灵气，达到超凡脱俗之境。
+                </p>
+              </div>
+
+              <div class="dev-entry">
+                <div class="dev-date">轮回与宿命</div>
+                <p>
+                  生命经历轮回转世，但特殊的灵魂印记可以跨越轮回保留记忆。宿命并非不可更改，关键在于个人的选择与坚持。
+                </p>
+              </div>
+
+              <div class="dev-entry">
+                <div class="dev-date">三界平衡</div>
+                <p>
+                  人间、天界、魔域构成基本三界，彼此间维持着微妙的平衡。一旦平衡被打破，便会引发天地异变和灾难。
+                </p>
+              </div>
+
+              <div class="dev-entry">
+                <div class="dev-date">神器与传承</div>
+                <p>
+                  上古神器蕴含强大力量，承载着文明的传承。它们的出现往往预示着时代的变革和重大事件的发生。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <h3 class="text-center mb-6">系列作品对比</h3>
+            <div class="table-responsive">
+              <table class="table table-bordered comparison-table">
+                <thead>
+                  <tr>
+                    <th>游戏</th>
+                    <th>发行年份</th>
+                    <th>战斗系统</th>
+                    <th>主角</th>
+                    <th>核心主题</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>古剑奇谭一</td>
+                    <td>2010</td>
+                    <td>回合制+即时制</td>
+                    <td>百里屠苏、风晴雪</td>
+                    <td>宿命与救赎</td>
+                  </tr>
+                  <tr>
+                    <td>古剑奇谭二</td>
+                    <td>2013</td>
+                    <td>即时制</td>
+                    <td>乐无异、夏夷则</td>
+                    <td>理想与责任</td>
+                  </tr>
+                  <tr>
+                    <td>古剑奇谭三</td>
+                    <td>2018</td>
+                    <td>全即时制</td>
+                    <td>北洛、云无月</td>
+                    <td>传承与守护</td>
+                  </tr>
+                  <tr>
+                    <td>古剑奇谭四</td>
+                    <td>2026（预计）</td>
+                    <td>开放世界</td>
+                    <td>待定</td>
+                    <td>未知</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4>游戏天地</h4>
+            <p>致力于为游戏爱好者提供优质的游戏内容和深度研究</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4>快速链接</h4>
+            <ul class="footer-links">
+              <li><a href="../../游戏专栏/index.html">游戏专栏</a></li>
+              <li><a href="../../游戏资讯/index.html">游戏资讯</a></li>
+              <li><a href="../../游戏研究/index.html">游戏研究</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>联系我们</h4>
+            <p>邮箱: contact@gameworld.com</p>
+            <p>微信: GameWorld2025</p>
+          </div>
+        </div>
+        <div class="border-top border-gray-700 mt-4 pt-4 text-center">
+          <p>&copy; 2025 游戏天地 - 探索游戏的无限可能</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/common.js"></script>
+  </body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>仙剑奇侠传 - 游戏专栏 - 游戏天地</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../../css/pages.css" />
+    <style>
+      /* 仙剑奇侠传专栏特有样式 */
+      .xianjian-header {
+        background: linear-gradient(135deg, #8b4513 0%, #cd853f 100%);
+      }
+
+      .xianjian-card {
+        border-top: 4px solid #8b4513;
+      }
+
+      .xianjian-btn {
+        background-color: #8b4513;
+        border-color: #8b4513;
+      }
+
+      .xianjian-btn:hover {
+        background-color: #6d3510;
+        border-color: #6d3510;
+      }
+
+      /* 时间线样式 */
+      .timeline {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: #cd853f;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+      }
+
+      .timeline-item {
+        padding: 10px 40px;
+        position: relative;
+        width: 50%;
+        box-sizing: border-box;
+      }
+
+      .timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border: 4px solid #8b4513;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .timeline-left {
+        left: 0;
+      }
+
+      .timeline-right {
+        left: 50%;
+      }
+
+      .timeline-left::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        right: 30px;
+        border: medium solid #fff;
+        border-width: 10px 0 10px 10px;
+        border-color: transparent transparent transparent #fff;
+      }
+
+      .timeline-right::before {
+        content: " ";
+        height: 0;
+        position: absolute;
+        top: 22px;
+        width: 0;
+        z-index: 1;
+        left: 30px;
+        border: medium solid #fff;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent #fff transparent transparent;
+      }
+
+      .timeline-right::after {
+        left: -12px;
+      }
+
+      .timeline-left::after {
+        right: -12px;
+      }
+
+      .timeline-content {
+        padding: 20px;
+        background-color: white;
+        position: relative;
+        border-radius: 6px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .character-relation {
+        position: relative;
+        height: 400px;
+        background-color: #f9f7f1;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .relation-node {
+        position: absolute;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      .relation-node:hover {
+        transform: scale(1.1);
+        z-index: 10;
+      }
+
+      .relation-node img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .relation-name {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        font-size: 0.9rem;
+        font-weight: bold;
+      }
+
+      .music-player {
+        background-color: #f9f7f1;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .music-info {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .music-cover {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 15px;
+      }
+
+      .music-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .music-title {
+        font-weight: bold;
+      }
+
+      .music-track {
+        width: 100%;
+        height: 5px;
+        background-color: #ddd;
+        border-radius: 3px;
+        margin-bottom: 10px;
+      }
+
+      .music-progress {
+        width: 35%;
+        height: 100%;
+        background-color: #8b4513;
+        border-radius: 3px;
+      }
+
+      .music-controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .music-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background-color: #8b4513;
+        color: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .music-btn:hover {
+        background-color: #6d3510;
+      }
+
+      @media screen and (max-width: 768px) {
+        .timeline::after {
+          left: 31px;
+        }
+
+        .timeline-item {
+          width: 100%;
+          padding-left: 70px;
+          padding-right: 25px;
+        }
+
+        .timeline-left::after,
+        .timeline-right::after {
+          left: 18px;
+        }
+
+        .timeline-right {
+          left: 0%;
+        }
+
+        .timeline-left::before,
+        .timeline-right::before {
+          left: 60px;
+          border: medium solid white;
+          border-width: 10px 10px 10px 0;
+          border-color: transparent white transparent transparent;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 完整导航栏结构（包含所有必要组件） -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- 1. Logo区域（可选，但建议保留，保持页面一致性） -->
+        <a class="navbar-brand" href="../../index.html">
+          <img
+            src="../../images/logo.png"
+            alt="游戏天地"
+            class="logo logo-responsive"
+          />
+        </a>
+
+        <!-- 2. 移动端汉堡按钮（必须，否则小屏幕无法展开导航） -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          <!--
+          与下方collapse的id对应
+          --
+        >
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 3. 您原有的菜单列表（保留并嵌入到完整结构中） -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 游戏专栏（路径：三级页面→游戏专栏，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏专栏/index.html"
+                id="navbarDropdown1"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                🎮 游戏专栏
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/仙剑奇侠传/index.html"
+                  >仙剑奇侠传</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/古剑奇谭/index.html"
+                  >古剑奇谭</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/王者荣耀/index.html"
+                  >王者荣耀</a
+                >
+              </div>
+            </li>
+
+            <!-- 游戏资讯（当前栏目，active类，路径：三级页面→游戏资讯首页，向上一级） -->
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../index.html"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📰 游戏资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" href="../../游戏资讯/新闻/index.html"
+                  >最新新闻</a
+                >
+                <a class="dropdown-item" href="../../游戏资讯/攻略/index.html"
+                  >精品攻略</a
+                >
+                <!-- 修复：原路径"index.html"改为"../攻略/index.html"，匹配实际目录 -->
+                <a class="dropdown-item" href="../../游戏资讯/活动/index.html"
+                  >活动中心</a
+                >
+                <!-- 修复：当前活动中心页面，用"index.html"（同目录） -->
+              </div>
+            </li>
+
+            <!-- 游戏研究（路径：三级页面→游戏研究，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏研究/index.html"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📖 游戏研究
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/设计分析/index.html"
+                  >设计分析</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/性能优化/index.html"
+                  >性能优化</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/AI交互研究/index.html"
+                  >AI/交互研究</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- 面包屑 -->
+    <div class="container-fluid padding" id="bread">
+      <a href="../../index.html">首页</a> &gt;
+      <a href="../../游戏专栏/index.html">游戏专栏</a> &gt;
+      <strong>仙剑奇侠传</strong>
+    </div>
+
+    <!-- 页面头部 -->
+    <section class="page-header py-10 xianjian-header text-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1 class="display-4">仙剑奇侠传</h1>
+            <p class="lead">国产仙侠RPG的开山之作，跨越二十余年的经典传奇。</p>
+            <div class="mt-4">
+              <a href="./角色介绍.html" class="btn btn-light mr-3">角色介绍</a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img
+              src="../../images/xianjian.jpg"
+              alt="仙剑奇侠传LOGO"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 游戏简介 -->
+    <section class="game-intro py-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-8">
+            <h2 class="section-title mb-6">系列简介</h2>
+            <p>
+              《仙剑奇侠传》是由中国台湾大宇资讯股份有限公司开发的系列国产单机角色扮演游戏，首部作品发行于1995年7月，堪称中国游戏史上的里程碑。
+            </p>
+            <p>
+              系列以中国古代神话传说为背景，讲述了一系列关于爱情、友情、亲情与宿命的动人故事。游戏融合了武侠、仙侠、奇幻等元素，以精美的画面、动人的音乐和深刻的剧情赢得了全球玩家的喜爱。
+            </p>
+
+            <div class="mt-6">
+              <h5>系列核心特色：</h5>
+              <ul class="list-group mt-3">
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-heart text-danger mr-3"></i>
+                  感人至深的剧情故事
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-music text-primary mr-3"></i>
+                  经典悠扬的游戏音乐
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-map-marked-alt text-success mr-3"></i>
+                  宏大的仙侠世界观
+                </li>
+                <li class="list-group-item d-flex align-items-center">
+                  <i class="fas fa-sword text-warning mr-3"></i>
+                  独特的战斗系统
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 系列作品时间线 -->
+    <section class="series-timeline py-12 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">系列作品时间线</h2>
+
+        <div class="timeline">
+          <div class="timeline-item timeline-left">
+            <div class="timeline-content">
+              <h3>仙剑奇侠传 七</h3>
+              <p class="text-muted">2021年10月15日发行</p>
+              <p>
+                采用虚幻4引擎开发，3D即时战斗模式，讲述了神族后裔月清疏与苗疆少年桑游等人的冒险故事。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-right">
+            <div class="timeline-content">
+              <h3>仙剑奇侠传 六</h3>
+              <p class="text-muted">2015年7月8日发行</p>
+              <p>
+                首次尝试开放世界元素，剧情围绕"衡道众"与"扁络桓"等人的宿命纠葛展开，战斗系统全面革新。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-left">
+            <div class="timeline-content">
+              <h3>仙剑奇侠传 五 前传</h3>
+              <p class="text-muted">2013年1月15日发行</p>
+              <p>
+                作为《仙剑五》的前传，讲述了夏侯瑾轩与瑕等人的冒险故事，补充了《仙剑五》的世界观和剧情。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-right">
+            <div class="timeline-content">
+              <h3>仙剑奇侠传 五</h3>
+              <p class="text-muted">2011年7月7日发行</p>
+              <p>
+                系列首次采用全程配音，讲述了姜云凡、唐雨柔等人的故事，延续了仙剑系列的经典元素。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-left">
+            <div class="timeline-content">
+              <h3>仙剑奇侠传 四</h3>
+              <p class="text-muted">2007年8月1日发行</p>
+              <p>
+                被誉为系列巅峰之作，讲述了云天河、韩菱纱等人寻找"琼华派"的故事，剧情深刻感人。
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-right">
+            <div class="timeline-content">
+              <h3>仙剑奇侠传 三</h3>
+              <p class="text-muted">2003年7月31日发行</p>
+              <p>
+                首次引入"景天"等经典角色，采用回合制战斗和多重结局设计，奠定了系列的经典地位。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4>游戏天地</h4>
+            <p>致力于为游戏爱好者提供优质的游戏内容和深度研究</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4>快速链接</h4>
+            <ul class="footer-links">
+              <li><a href="../../游戏专栏/index.html">游戏专栏</a></li>
+              <li><a href="../../游戏资讯/index.html">游戏资讯</a></li>
+              <li><a href="../../游戏研究/index.html">游戏研究</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>联系我们</h4>
+            <p>邮箱: contact@gameworld.com</p>
+            <p>微信: GameWorld2025</p>
+          </div>
+        </div>
+        <div class="border-top border-gray-700 mt-4 pt-4 text-center">
+          <p>&copy; 2025 游戏天地 - 探索游戏的无限可能</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/common.js"></script>
+  </body>
+</html>
