@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>《鸣潮》2.6版本更新详情 - 游戏天地</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../css/pages.css" />
+    <style>
+      .news-detail-header {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .news-banner {
+        height: 400px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .news-detail-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .news-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .content-section {
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .content-section:last-child {
+        border-bottom: none;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+      }
+
+      .section-title i {
+        margin-right: 10px;
+        color: #3498db;
+      }
+
+      .update-item {
+        margin-bottom: 1.2rem;
+        padding-left: 1rem;
+        border-left: 3px solid #e0e0e0;
+      }
+
+      .update-item:hover {
+        border-left-color: #3498db;
+      }
+
+      .highlight {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .character-card {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1.5rem;
+      }
+
+      .character-img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .weapon-list {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .weapon-list li {
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .weapon-list li:last-child {
+        border-bottom: none;
+      }
+
+      .activity-badge {
+        display: inline-block;
+        background-color: #3498db;
+        color: white;
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-right: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 完整导航栏结构（包含所有必要组件） -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- 1. Logo区域（可选，但建议保留，保持页面一致性） -->
+        <a class="navbar-brand" href="../../index.html">
+          <img
+            src="../../images/logo.png"
+            alt="游戏天地"
+            class="logo logo-responsive"
+          />
+        </a>
+
+        <!-- 2. 移动端汉堡按钮（必须，否则小屏幕无法展开导航） -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          <!--
+          与下方collapse的id对应
+          --
+        >
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 3. 您原有的菜单列表（保留并嵌入到完整结构中） -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 游戏专栏（路径：三级页面→游戏专栏，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏专栏/index.html"
+                id="navbarDropdown1"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                🎮 游戏专栏
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/仙剑奇侠传/index.html"
+                  >仙剑奇侠传</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/古剑奇谭/index.html"
+                  >古剑奇谭</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/王者荣耀/index.html"
+                  >王者荣耀</a
+                >
+              </div>
+            </li>
+
+            <!-- 游戏资讯（当前栏目，active类，路径：三级页面→游戏资讯首页，向上一级） -->
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../index.html"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📰 游戏资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" href="../../游戏资讯/新闻/index.html"
+                  >最新新闻</a
+                >
+                <a class="dropdown-item" href="../../游戏资讯/攻略/index.html"
+                  >精品攻略</a
+                >
+                <!-- 修复：原路径"index.html"改为"../攻略/index.html"，匹配实际目录 -->
+                <a class="dropdown-item" href="../../游戏资讯/活动/index.html"
+                  >活动中心</a
+                >
+                <!-- 修复：当前活动中心页面，用"index.html"（同目录） -->
+              </div>
+            </li>
+
+            <!-- 游戏研究（路径：三级页面→游戏研究，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏研究/index.html"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📖 游戏研究
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/设计分析/index.html"
+                  >设计分析</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/性能优化/index.html"
+                  >性能优化</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/AI交互研究/index.html"
+                  >AI/交互研究</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 面包屑 -->
+    <div class="container-fluid padding" id="bread">
+      <a href="../../index.html">首页</a> &gt;
+      <a href="../../游戏资讯/index.html">游戏资讯</a> &gt;
+      <a href="index.html">最新新闻</a> &gt;
+      <strong>《鸣潮》2.6版本更新详情</strong>
+    </div>
+
+    <!-- 新闻详情 -->
+    <section class="news-detail py-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <!-- 新闻头部 -->
+            <div class="news-detail-header mb-6">
+              <img
+                src="../../images/wuthering_waves_headline.jpg"
+                alt="《鸣潮》2.6版本更新"
+                class="news-banner"
+              />
+            </div>
+
+            <h1 class="news-detail-title">
+              《鸣潮》2.6版本于2025年8月28日更新，全新角色与区域上线
+            </h1>
+
+            <div class="news-meta mb-6">
+              <span><i class="far fa-clock"></i> 2025-08-27</span>
+              <span><i class="far fa-user"></i> 鸣潮官方</span>
+              <span><i class="far fa-comment"></i> 128 评论</span>
+              <span><i class="far fa-eye"></i> 5.2k 阅读</span>
+              <span class="news-tag">鸣潮</span>
+            </div>
+
+            <div class="news-content">
+              <p class="lead mb-6">
+                《鸣潮》官方宣布，2.6版本将于2025年8月28日正式更新，本次版本带来了全新角色、武器、区域、剧情以及多项系统优化，为玩家带来更加丰富的游戏体验。
+              </p>
+
+              <!-- 全新角色 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-user-circle"></i> 全新角色
+                </h2>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="character-card">
+                      <img
+                        src="../../images/news/augusta.jpg"
+                        alt="奥古斯塔"
+                        class="character-img"
+                      />
+                      <div class="p-4">
+                        <h3>奥古斯塔</h3>
+                        <p>
+                          五星导电长刃角色，可通过角色活动[不坠烜冕]抽取获得。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="character-card">
+                      <img
+                        src="../../images/news/yunuo.jpg"
+                        alt="尤诺"
+                        class="character-img"
+                      />
+                      <div class="p-4">
+                        <h3>尤诺</h3>
+                        <p>
+                          五星气动臂铠角色，可通过角色活动[漫于盈缺时轴]抽取获得。
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 全新武器 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-sword"></i> 全新武器
+                </h2>
+
+                <div class="update-item">
+                  <h3>驭冕铸雷之权</h3>
+                  <p>五星长刃，可通过武器活动[浮声沉兵·驭冕铸雷之权]获取。</p>
+                </div>
+
+                <div class="update-item">
+                  <h3>万物持存的注释</h3>
+                  <p>五星臂铠，可通过武器活动[浮声沉兵·万物持存的注释]获取。</p>
+                </div>
+
+                <div class="update-item">
+                  <h3>逐猎之咆系列武器</h3>
+                  <p>
+                    包括「金穹」（长刃）、「翼锋」（迅刀）、「阳焰」（佩枪）、「凌空」（臂铠）、「曜光」（音感仪）等四星武器，可通过参与[先约电台]活动，解锁【寰宇频道】或【寰宇特约】后，开启【寰宇开拓物资箱】自选获得。
+                  </p>
+                </div>
+              </div>
+
+              <!-- 全新区域 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-map-marked-alt"></i> 全新区域
+                </h2>
+
+                <div class="update-item">
+                  <h3>桑古伊斯狩原</h3>
+                  <p>
+                    跟随【潮汐任务】第二章·第八幕「灼我以烈阳」的指引即可解锁前往。
+                  </p>
+                  <img
+                    src="../../images/news/sanguis_hunting_ground.jpg"
+                    alt="桑古伊斯狩原"
+                    class="img-fluid my-3 rounded"
+                    style="max-height: 300px; object-fit: cover; width: 100%"
+                  />
+                </div>
+              </div>
+
+              <!-- 全新声骸 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-skull"></i> 全新声骸
+                </h2>
+
+                <div class="update-item">
+                  <h3>怒涛级声骸</h3>
+                  <p>包括「伪作的神王」、「蚀脊龙」、「海之女」。</p>
+                </div>
+
+                <div class="update-item">
+                  <h3>梦魇声骸</h3>
+                  <p>
+                    包括「梦魇·青羽鹭」、「梦魇·紫羽鹭」、「梦魇·咕咕河豚」、「梦魇·啾啾河豚」、「梦魇·巡徊猎手」、「梦魇·惊蛰猎手」。
+                  </p>
+                </div>
+              </div>
+
+              <!-- 合鸣套装 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-layer-group"></i> 合鸣套装
+                </h2>
+
+                <div class="update-item">
+                  <h3>荣斗铸锋之冠</h3>
+                  <p>
+                    3件套，角色获得护盾时，自身攻击力提升6%，暴击伤害增加4%，该效果可叠加至5层，持续4秒，每0.5秒可触发一次叠加。
+                  </p>
+                </div>
+
+                <div class="update-item">
+                  <h3>息界同调之律</h3>
+                  <p>
+                    3件套，角色施放声骸技能时，自身重击伤害加成提升30%，持续4秒，同时队伍中其他角色的声骸技能伤害加成提升4%，该效果可叠加至4层，持续30秒，同一类型的声骸技能只能触发一次该效果，效果结束后会重置记录。
+                  </p>
+                </div>
+              </div>
+
+              <!-- 全新剧情 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-book-open"></i> 全新剧情
+                </h2>
+
+                <div class="update-item">
+                  <h3>潮汐任务</h3>
+                  <ul>
+                    <li>第二章·第八幕「灼我以烈阳」</li>
+                    <li>第二章·第九幕「今夜，注定属于月亮」</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- 全新系统 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-cogs"></i> 全新系统
+                </h2>
+
+                <div class="update-item">
+                  <h3>百战锻形</h3>
+                  <p>武器图鉴系统，可查看已获取武器信息与图鉴进度。</p>
+                </div>
+
+                <div class="update-item">
+                  <h3>挑战记录复写</h3>
+                  <p>支持回放挑战过程。</p>
+                </div>
+
+                <div class="update-item">
+                  <h3>翱翔优化</h3>
+                  <p>在「今州」和「黑海岸」区域可使用【翱翔】进行空中探索。</p>
+                </div>
+              </div>
+
+              <!-- 其他新增内容 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-plus-circle"></i> 其他新增内容
+                </h2>
+
+                <div class="update-item">
+                  <h3>全息战略·幻痛</h3>
+                  <p>新增「海之女」挑战关卡。</p>
+                </div>
+
+                <div class="update-item">
+                  <h3>声骸异相</h3>
+                  <ul>
+                    <li>异相·无归的谬误：参与[潮蚀模拟]残象防御主题活动获得</li>
+                    <li>异相·角鳄：完成纪闻任务「朽剑之梦」后解锁</li>
+                  </ul>
+                </div>
+
+                <div class="update-item">
+                  <h3>新头像与称号</h3>
+                  <ul>
+                    <li>新头像：「弦望晦朔」、「残象终结者」</li>
+                    <li>新称号：「黯潮的守望者」</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- 版本活动 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-calendar-alt"></i> 版本活动
+                </h2>
+
+                <div class="update-item">
+                  <span class="activity-badge">探索</span>
+                  <h3>桑古伊斯狩原系列活动</h3>
+                  <p>
+                    包括[烬与铁之狩]区域探索活动、[行旅图集·桑古伊斯狩原]限时探索度活动、[狩原逐影]留影收集活动。
+                  </p>
+                </div>
+
+                <div class="update-item">
+                  <span class="activity-badge">挑战</span>
+                  <h3>潮蚀模拟：残象防御主题活动</h3>
+                </div>
+
+                <div class="update-item">
+                  <span class="activity-badge">休闲</span>
+                  <h3>第二索拉“终极版”</h3>
+                </div>
+
+                <div class="update-item">
+                  <span class="activity-badge">解谜</span>
+                  <h3>兽痕解析：限时解谜活动</h3>
+                </div>
+
+                <div class="update-item">
+                  <span class="activity-badge">休闲</span>
+                  <h3>月华解明：月相解读活动</h3>
+                </div>
+
+                <div class="update-item">
+                  <span class="activity-badge">探索</span>
+                  <h3>踏潮探历·黎那汐塔：限时探索委托活动</h3>
+                </div>
+
+                <div class="update-item">
+                  <span class="activity-badge">福利</span>
+                  <h3>行狩赠礼：七日签到活动</h3>
+                </div>
+              </div>
+
+              <!-- 版本补偿 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-gift"></i> 版本补偿
+                </h2>
+
+                <div class="highlight">
+                  <h3>补偿内容：</h3>
+                  <p>星声×300、结晶溶剂×22</p>
+
+                  <h3 class="mt-3">领取条件：</h3>
+                  <p>
+                    在2025年8月28日04:00（UTC+8）前创建角色并解锁【邮件】功能，补偿邮件有效期至下个版本更新前。
+                  </p>
+                </div>
+              </div>
+
+              <p>
+                《鸣潮》2.6版本为玩家带来了丰富的新内容和游戏优化，无论是全新角色的加入，还是新区域的开放，都将为玩家带来全新的游戏体验和挑战。请各位玩家做好准备，迎接即将到来的版本更新！
+              </p>
+            </div>
+
+            <!-- 分享按钮 -->
+            <div class="share-buttons mb-6">
+              <span class="share-text mr-3">分享：</span>
+              <a href="#" class="share-btn facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="share-btn twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="share-btn weixin"
+                ><i class="fab fa-weixin"></i
+              ></a>
+              <a href="#" class="share-btn weibo"
+                ><i class="fab fa-weibo"></i
+              ></a>
+              <a href="#" class="share-btn qq"><i class="fab fa-qq"></i></a>
+            </div>
+
+            <!-- 评论区 -->
+            <div class="news-comments">
+              <h3 class="mb-5">玩家评论 (128)</h3>
+
+              <!-- 评论输入框 -->
+              <div class="comment-input mb-8">
+                <textarea
+                  class="form-control"
+                  rows="4"
+                  placeholder="分享你的看法..."
+                ></textarea>
+                <button class="btn btn-primary mt-3">发表评论</button>
+              </div>
+
+              <!-- 评论列表 -->
+              <div class="comment-list">
+                <!-- 评论1 -->
+                <div class="comment-item mb-6 pb-6 border-bottom">
+                  <div class="comment-header d-flex align-items-center mb-2">
+                    <div>
+                      <h5 class="mb-0">潮汐守望者</h5>
+                      <p class="text-muted mb-0">2025-08-27 10:23</p>
+                    </div>
+                  </div>
+                  <div class="comment-content">
+                    <p>
+                      奥古斯塔看起来好酷！导电长刃角色终于来了，一定要抽到她！
+                    </p>
+                  </div>
+                  <div class="comment-actions mt-2">
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-thumbs-up mr-1"></i> 32
+                    </button>
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-comment mr-1"></i> 回复
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 评论2 -->
+                <div class="comment-item mb-6 pb-6 border-bottom">
+                  <div class="comment-header d-flex align-items-center mb-2">
+                    <div>
+                      <h5 class="mb-0">声骸研究员</h5>
+                      <p class="text-muted mb-0">2025-08-27 09:15</p>
+                    </div>
+                  </div>
+                  <div class="comment-content">
+                    <p>
+                      新的怒涛级声骸看起来很有挑战性，特别是「海之女」，希望难度不要太高。另外合鸣套装的效果很有趣，看来要研究新的配装了。
+                    </p>
+                  </div>
+                  <div class="comment-actions mt-2">
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-thumbs-up mr-1"></i> 18
+                    </button>
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-comment mr-1"></i> 回复
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 评论3 -->
+                <div class="comment-item mb-6">
+                  <div class="comment-header d-flex align-items-center mb-2">
+                    <div>
+                      <h5 class="mb-0">鸣潮旅行者</h5>
+                      <p class="text-muted mb-0">2025-08-27 08:42</p>
+                    </div>
+                  </div>
+                  <div class="comment-content">
+                    <p>
+                      桑古伊斯狩原看起来是个很有特色的区域，期待探索！翱翔优化也很实用，终于可以在更多区域飞了。
+                    </p>
+                  </div>
+                  <div class="comment-actions mt-2">
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-thumbs-up mr-1"></i> 25
+                    </button>
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-comment mr-1"></i> 回复
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 加载更多评论 -->
+              <div class="text-center mt-6">
+                <button class="btn btn-outline-primary">
+                  查看更多评论 <i class="fas fa-angle-down ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 侧边栏 - 与游戏资讯页面保持一致 -->
+          <div class="col-lg-4">
+            <!-- 订阅资讯 -->
+            <div class="sidebar-widget">
+              <div
+                class="subscribe-box bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-5 rounded-lg"
+              >
+                <h3 class="subscribe-title mb-3">订阅资讯推送</h3>
+                <p class="subscribe-desc mb-4">第一时间获取您关注的游戏资讯</p>
+                <form class="subscribe-form">
+                  <div class="form-group mb-3">
+                    <select class="form-control" id="game-interest">
+                      <option value="">选择您感兴趣的游戏</option>
+                      <option value="wuthering">鸣潮</option>
+                      <option value="wzry">王者荣耀</option>
+                      <option value="backrooms">后室</option>
+                      <option value="all">全部游戏</option>
+                    </select>
+                  </div>
+                  <div class="form-group mb-3">
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="您的邮箱地址"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-light btn-block">
+                    订阅
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 - 与其他页面保持一致 -->
+    <footer class="bg-dark text-white py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4>游戏天地</h4>
+            <p>致力于为游戏爱好者提供优质的游戏内容和深度研究</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4>快速链接</h4>
+            <ul class="footer-links">
+              <li><a href="../../游戏专栏/index.html">游戏专栏</a></li>
+              <li><a href="../../游戏资讯/index.html">游戏资讯</a></li>
+              <li><a href="../../游戏研究/index.html">游戏研究</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>联系我们</h4>
+            <p>邮箱: contact@gameworld.com</p>
+            <p>微信: GameWorld2025</p>
+          </div>
+        </div>
+        <div class="border-top border-gray-700 mt-4 pt-4 text-center">
+          <p>&copy; 2025 游戏天地 - 探索游戏的无限可能</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

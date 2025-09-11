@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>《鸣潮》2.6版本奥古斯塔角色培养攻略 - 游戏天地</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/pages.css" />
+    <style>
+      .guide-header {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .guide-banner {
+        height: 400px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .guide-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .guide-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .content-section {
+        margin-bottom: 2.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+      }
+
+      .content-section:last-child {
+        border-bottom: none;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #2c3e50;
+        display: flex;
+        align-items: center;
+      }
+
+      .section-title i {
+        margin-right: 10px;
+        color: #3498db;
+      }
+
+      .guide-item {
+        margin-bottom: 1.2rem;
+        padding-left: 1rem;
+        border-left: 3px solid #e0e0e0;
+      }
+
+      .guide-item:hover {
+        border-left-color: #3498db;
+      }
+
+      .highlight {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .character-profile {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        margin-bottom: 2rem;
+      }
+
+      .character-full-img {
+        height: 300px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .character-info {
+        padding: 1.5rem;
+      }
+
+      .stat-box {
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #3498db;
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      /* 补充分享按钮样式 */
+      .share-btn {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #f1f1f1;
+        color: #333;
+        margin-right: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .share-btn:hover {
+        background-color: #3498db;
+        color: white;
+        text-decoration: none;
+      }
+
+      .share-text {
+        font-weight: 500;
+        color: #666;
+      }
+
+      /* 表格样式 */
+      .guide-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+      }
+
+      .guide-table th,
+      .guide-table td {
+        padding: 0.8rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+      }
+
+      .guide-table th {
+        background-color: #f8f9fa;
+        font-weight: 600;
+      }
+
+      .guide-table tr:hover {
+        background-color: #f8f9fa;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 完整导航栏结构（包含所有必要组件） -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- 1. Logo区域（可选，但建议保留，保持页面一致性） -->
+        <a class="navbar-brand" href="../../index.html">
+          <img
+            src="../../images/logo.png"
+            alt="游戏天地"
+            class="logo logo-responsive"
+          />
+        </a>
+
+        <!-- 2. 移动端汉堡按钮（必须，否则小屏幕无法展开导航） -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          <!--
+          与下方collapse的id对应
+          --
+        >
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 3. 您原有的菜单列表（保留并嵌入到完整结构中） -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 游戏专栏（路径：三级页面→游戏专栏，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏专栏/index.html"
+                id="navbarDropdown1"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                🎮 游戏专栏
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/仙剑奇侠传/index.html"
+                  >仙剑奇侠传</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/古剑奇谭/index.html"
+                  >古剑奇谭</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/王者荣耀/index.html"
+                  >王者荣耀</a
+                >
+              </div>
+            </li>
+
+            <!-- 游戏资讯（当前栏目，active类，路径：三级页面→游戏资讯首页，向上一级） -->
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../index.html"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📰 游戏资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" href="../index.html">最新新闻</a>
+                <a class="dropdown-item" href="../攻略/index.html">精品攻略</a>
+                <!-- 修复：原路径"index.html"改为"../攻略/index.html"，匹配实际目录 -->
+                <a class="dropdown-item" href="index.html">活动中心</a>
+                <!-- 修复：当前活动中心页面，用"index.html"（同目录） -->
+              </div>
+            </li>
+
+            <!-- 游戏研究（路径：三级页面→游戏研究，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏研究/index.html"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📖 游戏研究
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/设计分析/index.html"
+                  >设计分析</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/性能优化/index.html"
+                  >性能优化</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/AI交互研究/index.html"
+                  >AI/交互研究</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 面包屑 -->
+    <div class="container-fluid padding" id="bread">
+      <a href="../../index.html">首页</a> &gt;
+      <a href="../../游戏资讯/index.html">游戏资讯</a> &gt;
+      <a href="../攻略/index.html">精品攻略</a> &gt;
+      <strong>《鸣潮》2.6版本奥古斯塔角色培养攻略</strong>
+    </div>
+
+    <!-- 攻略详情 -->
+    <section class="guide-detail py-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <!-- 攻略头部 -->
+            <div class="guide-header mb-6">
+              <img
+                src="../../images/mingchao.jpg"
+                alt="奥古斯塔角色培养攻略"
+                class="guide-banner"
+              />
+            </div>
+
+            <h1 class="guide-title">《鸣潮》2.6版本 奥古斯塔角色培养攻略</h1>
+
+            <div class="guide-meta mb-6">
+              <span><i class="far fa-clock"></i> 08/29</span>
+              <span><i class="far fa-user"></i> 攻略作者</span>
+              <span><i class="far fa-comment"></i> 36 评论</span>
+              <span><i class="far fa-eye"></i> 242 浏览</span>
+              <span class="guide-tag">鸣潮</span>
+              <span class="guide-tag">角色攻略</span>
+              <span class="guide-tag">奥古斯塔</span>
+            </div>
+
+            <div class="guide-content">
+              <p class="lead mb-6">
+                《鸣潮》2.6版本中，奥古斯塔是一名强力主C角色，作为五星导电长刃角色，她拥有出色的输出能力和独特的暴击机制。本攻略将详细介绍奥古斯塔的培养方案，帮助你最大化她的战斗潜力。
+              </p>
+
+              <!-- 角色简介 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-user-circle"></i> 角色简介
+                </h2>
+
+                <div class="character-profile">
+                  <img
+                    src="../../images/news/augusta_full.jpg"
+                    alt="奥古斯塔全身图"
+                    class="character-full-img"
+                  />
+                  <div class="character-info">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="stat-box">
+                          <div class="stat-value">5★</div>
+                          <div class="stat-label">稀有度</div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="stat-box">
+                          <div class="stat-value">导电</div>
+                          <div class="stat-label">属性</div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="stat-box">
+                          <div class="stat-value">长刃</div>
+                          <div class="stat-label">武器类型</div>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="stat-box">
+                          <div class="stat-value">主C</div>
+                          <div class="stat-label">角色定位</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 共鸣链路 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-link"></i> 共鸣链路
+                </h2>
+
+                <div class="highlight">
+                  <p><strong>推荐优先级：二链 &gt; 三链 &gt; 一链</strong></p>
+                </div>
+
+                <div class="guide-item">
+                  <h3>二链（优先抽取）</h3>
+                  <p>
+                    可额外获得暴击率提升，当暴击高于100%时，每多出1%暴击，暴击伤害提升2%，最高可提升100%暴击伤害。这是奥古斯塔核心伤害来源，能极大提升其输出上限。
+                  </p>
+                </div>
+
+                <div class="guide-item">
+                  <h3>三链</h3>
+                  <p>
+                    能对重击、共鸣技能以及共鸣解放伤害提升25%伤害倍率。对于主打重击输出的奥古斯塔来说，提升显著，是次优选择。
+                  </p>
+                </div>
+              </div>
+
+              <!-- 武器选择 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-sword"></i> 武器选择
+                </h2>
+
+                <table class="guide-table">
+                  <thead>
+                    <tr>
+                      <th>推荐度</th>
+                      <th>武器名称</th>
+                      <th>效果与评价</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>首选</strong></td>
+                      <td>驭冕铸雷之权（专武）</td>
+                      <td>
+                        可提供重击增伤和无视防御等效果，完美契合奥古斯塔的输出机制，是最适合她的武器。
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>下位替代</strong></td>
+                      <td>忌炎专武苍鳞千嶂</td>
+                      <td>
+                        满级拥有587的白值以及48.6的暴击伤害，与专武差距在10%左右，是不错的替代选择。
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><strong>备选</strong></td>
+                      <td>大月卡武器金穹</td>
+                      <td>
+                        释放共鸣解放后能提升重击伤害，副词条为暴击伤害，适合资源有限的玩家。
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- 技能加点 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-level-up-alt"></i> 技能加点
+                </h2>
+
+                <div class="highlight">
+                  <p>
+                    <strong
+                      >加点顺序：共鸣解放 &gt; 共鸣回路 &gt; 普攻 &gt; 共鸣技能
+                      &gt; 变奏技能</strong
+                    >
+                  </p>
+                </div>
+
+                <div class="guide-item">
+                  <h3>共鸣解放</h3>
+                  <p>
+                    优先拉满，作为奥古斯塔的核心输出技能，等级提升对伤害提升最为显著。
+                  </p>
+                </div>
+
+                <div class="guide-item">
+                  <h3>共鸣回路</h3>
+                  <p>其次点满，能提升整体输出能力和生存能力。</p>
+                </div>
+
+                <div class="guide-item">
+                  <h3>普攻</h3>
+                  <p>奥古斯塔主要输出手段之一，建议点高。</p>
+                </div>
+
+                <div class="guide-item">
+                  <h3>共鸣技能和变奏技能</h3>
+                  <p>点到6级左右即可，对整体输出提升相对有限。</p>
+                </div>
+              </div>
+
+              <!-- 声骸搭配 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-shield-alt"></i> 声骸搭配
+                </h2>
+
+                <div class="guide-item">
+                  <h3>毕业搭配：3荣斗铸锋之冠+2冥雷</h3>
+                  <ul>
+                    <li>冥雷二件套提供导电效果，增强元素伤害</li>
+                    <li>
+                      荣斗铸锋之冠3件套效果：角色获得护盾时，提升自身攻击和暴击伤害
+                    </li>
+                    <li>C4声骸推荐：伪作的神王，首位装配有重击+导电效果</li>
+                  </ul>
+                </div>
+
+                <div class="guide-item">
+                  <h3>过渡搭配：2冥雷+2其他暴击伤害套装</h3>
+                  <p>
+                    在未凑齐毕业套装前，可以使用此过渡组合，保证基础输出能力。
+                  </p>
+                </div>
+
+                <div class="highlight">
+                  <p><strong>声骸主属性推荐：</strong></p>
+                  <ul>
+                    <li>头部：暴击率/暴击伤害</li>
+                    <li>手部：攻击力百分比</li>
+                    <li>身体：重击伤害加成</li>
+                    <li>腿部：攻击力百分比</li>
+                    <li>足部：暴击率/暴击伤害</li>
+                    <li>主声骸：重击伤害加成+导电伤害加成</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- 角色配队 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-users"></i> 角色配队
+                </h2>
+
+                <div class="guide-item">
+                  <h3>最终配队：奥古斯塔+尤诺+守岸人+任意辅助</h3>
+                  <p>
+                    尤诺上线后替换莫特斐，能更好地与奥古斯塔配合，提供护盾和增伤效果，守岸人提供导电共鸣和减抗，提升队伍整体输出。
+                  </p>
+                </div>
+
+                <div class="guide-item">
+                  <h3>过渡配队：奥古斯塔+莫特斐+守岸人+任意辅助</h3>
+                  <p>
+                    在尤诺未获取前，可以使用莫特斐作为替代，提供护盾和一定的增伤效果。
+                  </p>
+                </div>
+
+                <div class="guide-item">
+                  <h3>配队思路</h3>
+                  <p>
+                    奥古斯塔作为主C，需要队友提供护盾（触发荣斗铸锋之冠效果）、导电共鸣和增伤效果。优先选择能与她形成良好协同的角色。
+                  </p>
+                </div>
+              </div>
+
+              <!-- 属性面板 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-chart-line"></i> 属性面板
+                </h2>
+
+                <div class="highlight">
+                  <h3>毕业面板（携带专武时）：</h3>
+                  <ul>
+                    <li>攻击力：2400左右</li>
+                    <li>暴击率：80%左右</li>
+                    <li>暴击伤害：220%以上（越高越好）</li>
+                    <li>导电伤害加成：尽量堆满</li>
+                    <li>重击伤害加成：尽量提高</li>
+                  </ul>
+                </div>
+
+                <p>
+                  奥古斯塔的属性优先级：暴击率和暴击伤害 > 攻击力 > 导电伤害加成
+                  >
+                  重击伤害加成。由于二链效果，当暴击率超过100%时会转化为暴击伤害，因此可以适当堆高暴击率。
+                </p>
+              </div>
+
+              <!-- 培养总结 -->
+              <div class="content-section">
+                <h2 class="section-title">
+                  <i class="fas fa-check-circle"></i> 培养总结
+                </h2>
+
+                <p>
+                  奥古斯塔作为一名强力的主C角色，核心在于利用高暴击率转化为高额暴击伤害，配合重击输出打出成吨伤害。培养过程中应优先保证暴击率和暴击伤害达标，其次提升攻击力和相关伤害加成。
+                </p>
+                <p>
+                  武器选择上，有条件的玩家建议抽取专武，能极大提升奥古斯塔的输出能力。声骸方面，荣斗铸锋之冠3件套是核心，配合冥雷2件套能最大化她的伤害潜力。
+                </p>
+              </div>
+            </div>
+
+            <!-- 分享按钮 -->
+            <div class="share-buttons mb-6">
+              <span class="share-text mr-3">分享：</span>
+              <a href="#" class="share-btn facebook"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="share-btn twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="share-btn weixin"
+                ><i class="fab fa-weixin"></i
+              ></a>
+              <a href="#" class="share-btn weibo"
+                ><i class="fab fa-weibo"></i
+              ></a>
+              <a href="#" class="share-btn qq"><i class="fab fa-qq"></i></a>
+            </div>
+
+            <!-- 评论区 -->
+            <div class="guide-comments">
+              <h3 class="mb-5">玩家评论 (36)</h3>
+
+              <!-- 评论输入框 -->
+              <div class="comment-input mb-8">
+                <textarea
+                  class="form-control"
+                  rows="4"
+                  placeholder="分享你的培养心得..."
+                ></textarea>
+                <button class="btn btn-primary mt-3">发表评论</button>
+              </div>
+
+              <!-- 评论列表 -->
+              <div class="comment-list">
+                <!-- 评论1 -->
+                <div class="comment-item mb-6 pb-6 border-bottom">
+                  <div class="comment-header d-flex align-items-center mb-2">
+                    <div>
+                      <h5 class="mb-0">导电专家</h5>
+                      <p class="text-muted mb-0">08/29 14:32</p>
+                    </div>
+                  </div>
+                  <div class="comment-content">
+                    <p>
+                      奥古斯塔的二链确实强，我现在暴击率堆到120%，暴击伤害直接突破300%，打BOSS简直是秒杀！
+                    </p>
+                  </div>
+                  <div class="comment-actions mt-2">
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-thumbs-up mr-1"></i> 15
+                    </button>
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-comment mr-1"></i> 回复
+                    </button>
+                  </div>
+                </div>
+
+                <!-- 评论2 -->
+                <div class="comment-item mb-6">
+                  <div class="comment-header d-flex align-items-center mb-2">
+                    <div>
+                      <h5 class="mb-0">长刃使用者</h5>
+                      <p class="text-muted mb-0">08/29 11:05</p>
+                    </div>
+                  </div>
+                  <div class="comment-content">
+                    <p>
+                      没有专武的话，金穹真的是不错的选择，我测试过和专武差距大概15%左右，对于平民玩家很友好。
+                    </p>
+                  </div>
+                  <div class="comment-actions mt-2">
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-thumbs-up mr-1"></i> 8
+                    </button>
+                    <button class="btn btn-link text-muted">
+                      <i class="far fa-comment mr-1"></i> 回复
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 加载更多评论 -->
+              <div class="text-center mt-6">
+                <button class="btn btn-outline-primary">
+                  查看更多评论 <i class="fas fa-angle-down ml-1"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 侧边栏 -->
+          <div class="col-lg-4">
+            <!-- 订阅资讯 -->
+            <div class="sidebar-widget">
+              <div
+                class="subscribe-box bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-5 rounded-lg"
+              >
+                <h3 class="subscribe-title mb-3">订阅攻略推送</h3>
+                <p class="subscribe-desc mb-4">第一时间获取《鸣潮》最新攻略</p>
+                <form class="subscribe-form">
+                  <div class="form-group mb-3">
+                    <input
+                      type="email"
+                      class="form-control"
+                      placeholder="您的邮箱地址"
+                      required
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-light btn-block">
+                    订阅
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4>游戏天地</h4>
+            <p>致力于为游戏爱好者提供优质的游戏内容和深度研究</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4>快速链接</h4>
+            <ul class="footer-links">
+              <li><a href="../../游戏专栏/index.html">游戏专栏</a></li>
+              <li><a href="../../游戏资讯/index.html">游戏资讯</a></li>
+              <li><a href="../../游戏研究/index.html">游戏研究</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>联系我们</h4>
+            <p>邮箱: contact@gameworld.com</p>
+            <p>微信: GameWorld2025</p>
+          </div>
+        </div>
+        <div class="border-top border-gray-700 mt-4 pt-4 text-center">
+          <p>&copy; 2025 游戏天地 - 探索游戏的无限可能</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 脚本 -->
+    <script src="../../bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/common.js"></script>
+    <script>
+      // 初始化下拉菜单
+      $(document).ready(function () {
+        $(".dropdown-toggle").dropdown();
+
+        // 移动端菜单点击后关闭
+        $(".navbar-nav .dropdown-item").on("click", function () {
+          $(".navbar-collapse").collapse("hide");
+        });
+      });
+    </script>
+  </body>
+</html>

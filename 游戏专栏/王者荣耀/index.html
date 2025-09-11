@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>王者荣耀 - 游戏专栏 - 游戏天地</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../../css/pages.css" />
+    <style>
+      /* 王者荣耀专栏特有样式 */
+      .wzry-header {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+      }
+
+      .wzry-card {
+        border-top: 4px solid #ff6b6b;
+      }
+
+      .wzry-btn {
+        background-color: #ff6b6b;
+        border-color: #ff6b6b;
+      }
+
+      .wzry-btn:hover {
+        background-color: #e85a5a;
+        border-color: #e85a5a;
+      }
+
+      .hero-tag {
+        display: inline-block;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-right: 5px;
+        margin-bottom: 5px;
+      }
+
+      .tag-warrior {
+        background-color: #ffecd2;
+        color: #ea7317;
+      }
+      .tag-mage {
+        background-color: #e0cffc;
+        color: #7b4397;
+      }
+      .tag-archer {
+        background-color: #c2f0c2;
+        color: #2e7d32;
+      }
+      .tag-assassin {
+        background-color: #ffcdd2;
+        color: #c62828;
+      }
+      .tag-tank {
+        background-color: #b2ebf2;
+        color: #00838f;
+      }
+      .tag-support {
+        background-color: #fff3e0;
+        color: #f57c00;
+      }
+
+      .tier-list {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .tier-header {
+        padding: 10px 15px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .tier-S {
+        background-color: #ffd700;
+        color: #8b6914;
+      }
+      .tier-A {
+        background-color: #e0e0e0;
+        color: #424242;
+      }
+      .tier-B {
+        background-color: #cd7f32;
+        color: white;
+      }
+      .tier-C {
+        background-color: #a0522d;
+        color: white;
+      }
+
+      .tier-content {
+        padding: 15px;
+      }
+
+      .hero-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin: 0 8px 8px 0;
+        display: inline-block;
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+
+      .hero-icon:hover {
+        transform: scale(1.1);
+        z-index: 10;
+      }
+
+      .hero-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-name {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .hero-icon:hover .hero-name {
+        opacity: 1;
+      }
+
+      .update-item {
+        border-left: 3px solid #ff6b6b;
+        padding-left: 15px;
+        margin-bottom: 20px;
+      }
+
+      .update-version {
+        font-weight: bold;
+        color: #ff6b6b;
+      }
+
+      .competition-item {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .competition-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .competition-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: #ff6b6b;
+        color: white;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+      }
+
+      .bannner {
+        margin-top: 10px;
+      }
+      .banner img {
+        max-width: 100%;
+        height: auto;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 完整导航栏结构（包含所有必要组件） -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <!-- 1. Logo区域（可选，但建议保留，保持页面一致性） -->
+        <a class="navbar-brand" href="../../index.html">
+          <img
+            src="../../images/logo.png"
+            alt="游戏天地"
+            class="logo logo-responsive"
+          />
+        </a>
+
+        <!-- 2. 移动端汉堡按钮（必须，否则小屏幕无法展开导航） -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          <!--
+          与下方collapse的id对应
+          --
+        >
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle
+          navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- 3. 您原有的菜单列表（保留并嵌入到完整结构中） -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <!-- 游戏专栏（路径：三级页面→游戏专栏，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏专栏/index.html"
+                id="navbarDropdown1"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                🎮 游戏专栏
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/仙剑奇侠传/index.html"
+                  >仙剑奇侠传</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/古剑奇谭/index.html"
+                  >古剑奇谭</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏专栏/王者荣耀/index.html"
+                  >王者荣耀</a
+                >
+              </div>
+            </li>
+
+            <!-- 游戏资讯（当前栏目，active类，路径：三级页面→游戏资讯首页，向上一级） -->
+            <li class="nav-item dropdown active">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../index.html"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📰 游戏资讯
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <a class="dropdown-item" href="../../游戏资讯/新闻/index.html"
+                  >最新新闻</a
+                >
+                <a class="dropdown-item" href="../../游戏资讯/攻略/index.html"
+                  >精品攻略</a
+                >
+                <!-- 修复：原路径"index.html"改为"../攻略/index.html"，匹配实际目录 -->
+                <a class="dropdown-item" href="../../游戏资讯/活动/index.html"
+                  >活动中心</a
+                >
+                <!-- 修复：当前活动中心页面，用"index.html"（同目录） -->
+              </div>
+            </li>
+
+            <!-- 游戏研究（路径：三级页面→游戏研究，向上两级） -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="../../游戏研究/index.html"
+                id="navbarDropdown3"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                📖 游戏研究
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/设计分析/index.html"
+                  >设计分析</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/性能优化/index.html"
+                  >性能优化</a
+                >
+                <a
+                  class="dropdown-item"
+                  href="../../游戏研究/AI交互研究/index.html"
+                  >AI/交互研究</a
+                >
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- 面包屑 -->
+    <div class="container-fluid padding" id="bread">
+      <a href="../../index.html">首页</a> &gt;
+      <a href="../../游戏专栏/index.html">游戏专栏</a> &gt;
+      <strong>王者荣耀</strong>
+    </div>
+
+    <!-- 页面头部 -->
+    <section class="page-header py-10 wzry-header text-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-8">
+            <h1 class="display-4">王者荣耀</h1>
+            <p class="lead">
+              5v5英雄公平对战手游，汇聚百位英雄，演绎峡谷传奇。
+            </p>
+            <div class="mt-4">
+              <a href="英雄图鉴.html" class="btn btn-light mr-3">英雄图鉴</a>
+              <a href="赛事资讯.html" class="btn btn-outline-light">赛事资讯</a>
+            </div>
+          </div>
+          <div class="col-md-4 text-center">
+            <img
+              src="../../images/games/wzry-logo.png"
+              alt="王者荣耀LOGO"
+              class="img-fluid"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 游戏简介 -->
+    <section class="game-intro py-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 mb-8">
+            <h2 class="section-title mb-6">游戏简介</h2>
+            <p>
+              《王者荣耀》是由腾讯游戏天美工作室群开发并运行的一款运营在Android、IOS、NS平台上的MOBA类手机游戏，自2015年上线以来持续保持行业领先地位，2025年仍保持着每月超过1亿活跃用户。
+            </p>
+            <p>
+              游戏以竞技对战为主，玩家之间进行1V1、3V3、5V5等多种方式的PVP对战，还可以参加游戏的冒险模式和PVE的闯关模式。游戏中的英雄多为中国历史人物或神话传说人物，如李白、关羽、妲己等，同时也包含原创角色。
+            </p>
+
+            <div class="mt-6">
+              <h5>游戏核心模式：</h5>
+              <ul class="list-group mt-3">
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  5V5经典对战
+                  <span class="badge badge-primary">最受欢迎</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  3V3长平攻防战
+                  <span class="badge badge-secondary">快速对战</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  1V1墨家机关道
+                  <span class="badge badge-secondary">练习模式</span>
+                </li>
+                <li
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  王者峡谷（排位赛）
+                  <span class="badge badge-success">竞技模式</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="banner">
+            <img
+              src="../../images/games/wzry-banner.jpg"
+              alt="王者荣耀游戏画面"
+              class="img-fluid rounded shadow-lg"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 英雄分类 -->
+    <section class="hero-categories py-12 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">英雄分类</h2>
+
+        <div class="row">
+          <div class="col-lg-2 col-md-4 mb-6">
+            <div class="card h-100 text-center wzry-card shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-fist-raised fa-3x mb-3 text-warning"></i>
+                <h5 class="card-title">战士</h5>
+                <p class="card-text text-muted">近战输出，兼具攻击与防御</p>
+                <p class="card-text"><small>41位英雄</small></p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="英雄图鉴.html#warrior" class="btn wzry-btn btn-sm"
+                  >查看全部</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-6">
+            <div class="card h-100 text-center wzry-card shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-magic fa-3x mb-3 text-purple"></i>
+                <h5 class="card-title">法师</h5>
+                <p class="card-text text-muted">远程法术输出，高爆发</p>
+                <p class="card-text"><small>45位英雄</small></p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="英雄图鉴.html#mage" class="btn wzry-btn btn-sm"
+                  >查看全部</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-6">
+            <div class="card h-100 text-center wzry-card shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-crosshairs fa-3x mb-3 text-green"></i>
+                <h5 class="card-title">射手</h5>
+                <p class="card-text text-muted">远程物理输出，持续伤害</p>
+                <p class="card-text"><small>20位英雄</small></p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="英雄图鉴.html#archer" class="btn wzry-btn btn-sm"
+                  >查看全部</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-6">
+            <div class="card h-100 text-center wzry-card shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-bolt fa-3x mb-3 text-red"></i>
+                <h5 class="card-title">刺客</h5>
+                <p class="card-text text-muted">高机动性，瞬间爆发</p>
+                <p class="card-text"><small>23位英雄</small></p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="英雄图鉴.html#assassin" class="btn wzry-btn btn-sm"
+                  >查看全部</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-6">
+            <div class="card h-100 text-center wzry-card shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-shield-alt fa-3x mb-3 text-cyan"></i>
+                <h5 class="card-title">坦克</h5>
+                <p class="card-text text-muted">高防御，保护队友</p>
+                <p class="card-text"><small>29位英雄</small></p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="英雄图鉴.html#tank" class="btn wzry-btn btn-sm"
+                  >查看全部</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-2 col-md-4 mb-6">
+            <div class="card h-100 text-center wzry-card shadow-sm">
+              <div class="card-body">
+                <i class="fas fa-hands-helping fa-3x mb-3 text-orange"></i>
+                <h5 class="card-title">辅助</h5>
+                <p class="card-text text-muted">增益队友，控制敌人</p>
+                <p class="card-text"><small>20位英雄</small></p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="英雄图鉴.html#support" class="btn wzry-btn btn-sm"
+                  >查看全部</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 当前版本英雄强度榜 -->
+    <section class="tier-list-section py-12">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">当前版本英雄强度榜</h2>
+        <p class="text-center text-muted mb-8">
+          基于最新版本（S40）的排位赛数据统计，反映当前版本强势英雄
+        </p>
+
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+            <!-- S级英雄 -->
+            <div class="tier-list mb-4">
+              <div class="tier-header tier-S">S级 - 版本强势英雄</div>
+              <div class="tier-content">
+                <div class="hero-icon">
+                  <img src="../../images/wzry/heroes/sunquan.jpg" alt="孙权" />
+                  <span class="hero-name">孙权</span>
+                </div>
+                <div class="hero-icon">
+                  <img
+                    src="../../images/wzry/heroes/huamulan.jpg"
+                    alt="花木兰"
+                  />
+                  <span class="hero-name">花木兰</span>
+                </div>
+                <div class="hero-icon">
+                  <img src="../../images/wzry/heroes/diaochan.jpg" alt="貂蝉" />
+                  <span class="hero-name">貂蝉</span>
+                </div>
+                <div class="hero-icon">
+                  <img src="../../images/wzry/heroes/jing.jpg" alt="镜" />
+                  <span class="hero-name">镜</span>
+                </div>
+                <div class="hero-icon">
+                  <img
+                    src="../../images/wzry/heroes/peiqinhu.jpg"
+                    alt="裴擒虎"
+                  />
+                  <span class="hero-name">裴擒虎</span>
+                </div>
+                <div class="hero-icon">
+                  <img
+                    src="../../images/wzry/heroes/kongkonger.jpg"
+                    alt="空空儿"
+                  />
+                  <span class="hero-name">空空儿</span>
+                </div>
+                <div class="hero-icon">
+                  <img src="../../images/wzry/heroes/daqiao.jpg" alt="大乔" />
+                  <span class="hero-name">大乔</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- A级英雄 -->
+            <div class="tier-list mb-4">
+              <div class="tier-header tier-A">A级 - 推荐使用英雄</div>
+              <div class="tier-content">
+                <div class="hero-icon">
+                  <img src="../../images/wzry/heroes/yunying.jpg" alt="云缨" />
+                  <span class="hero-name">云缨</span>
+                </div>
+                <div class="hero-icon">
+                  <img src="../../images/wzry/heroes/hanxin.jpg" alt="韩信" />
+                  <span class="hero-name">韩信</span>
+                </div>
+                <div class="hero-icon">
+                  <img
+                    src="../../images/wzry/heroes/zhaohuaizhen.jpg"
+                    alt="赵怀真"
+                  />
+                  <span class="hero-name">赵怀真</span>
+                </div>
+                <div class="hero-icon">
+                  <img src="../../images/wzry/heroes/yuji.jpg" alt="虞姬" />
+                  <span class="hero-name">虞姬</span>
+                </div>
+                <div class="hero-icon">
+                  <img
+                    src="../../images/wzry/heroes/gongben.jpg"
+                    alt="宫本武藏"
+                  />
+                  <span class="hero-name">宫本武藏</span>
+                </div>
+                <div class="hero-icon">
+                  <img src="../../images/wzry/heroes/xiangyu.jpg" alt="项羽" />
+                  <span class="hero-name">项羽</span>
+                </div>
+                <div class="hero-icon">
+                  <img
+                    src="../../images/wzry/heroes/sunwukong.jpg"
+                    alt="孙悟空"
+                  />
+                  <span class="hero-name">孙悟空</span>
+                </div>
+                <div class="hero-icon">
+                  <img
+                    src="../../images/wzry/heroes/bailixuance.jpg"
+                    alt="百里玄策"
+                  />
+                  <span class="hero-name">百里玄策</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-6">
+          <a href="英雄图鉴.html" class="btn wzry-btn">查看完整英雄图鉴</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心内容板块 -->
+    <section class="core-content py-12 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">王者荣耀专栏核心内容</h2>
+
+        <div class="row">
+          <!-- 英雄图鉴 -->
+          <div class="col-lg-4 col-md-6 mb-6">
+            <div class="card h-100 wzry-card shadow-sm">
+              <img
+                src="../../images/wzry/hero-gallery.jpg"
+                class="card-img-top"
+                alt="王者荣耀英雄图鉴"
+              />
+              <div class="card-body">
+                <h3 class="card-title">英雄图鉴</h3>
+                <p class="card-text">
+                  全面介绍所有英雄的技能特点、出装建议、铭文搭配和使用技巧，帮助玩家快速掌握英雄玩法。
+                </p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="英雄图鉴.html" class="btn wzry-btn w-100"
+                  >浏览英雄图鉴</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 赛事资讯 -->
+          <div class="col-lg-4 col-md-6 mb-6">
+            <div class="card h-100 wzry-card shadow-sm">
+              <img
+                src="../../images/wzry/esports.jpg"
+                class="card-img-top"
+                alt="王者荣耀赛事资讯"
+              />
+              <div class="card-body">
+                <h3 class="card-title">赛事资讯</h3>
+                <p class="card-text">
+                  最新的KPL职业联赛、世界冠军杯等赛事报道，包括赛程安排、比赛结果、精彩瞬间和战队分析。
+                </p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="赛事资讯.html" class="btn wzry-btn w-100"
+                  >查看赛事资讯</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 版本更新 -->
+          <div class="col-lg-4 col-md-6 mb-6">
+            <div class="card h-100 wzry-card shadow-sm">
+              <img
+                src="../../images/wzry/update.jpg"
+                class="card-img-top"
+                alt="王者荣耀版本更新"
+              />
+              <p></p>
+              <img
+                src="../../images/wzry/update1.jpg"
+                class="card-img-top"
+                alt="王者荣耀版本更新"
+              />
+
+              <div class="card-body">
+                <h3 class="card-title">版本更新</h3>
+                <p class="card-text">
+                  详细解读每次版本更新内容，包括英雄调整、装备改动、玩法更新和BUG修复，分析版本趋势。
+                </p>
+              </div>
+              <div class="card-footer bg-transparent">
+                <a href="版本更新.html" class="btn wzry-btn w-100"
+                  >了解版本更新</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最新版本更新 -->
+    <section class="latest-update py-12">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">最新版本更新</h2>
+
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="update-item">
+              <h4 class="update-version">版本 S45.1.0.3 - 2025年9月5日更新</h4>
+              <h5>英雄调整：</h5>
+              <ul>
+                <li>
+                  <strong>云中君</strong
+                  >：基础生命值提升120点，大招冷却时间减少3秒
+                </li>
+                <li>
+                  <strong>貂蝉</strong>：二技能伤害降低3%，但回复效果提升15%
+                </li>
+                <li>
+                  <strong>新英雄-烛龙</strong
+                  >：上线全新法师英雄"烛龙"，拥有独特的视野控制能力
+                </li>
+                <li>
+                  <strong>韩信</strong
+                  >：一技能位移距离增加15%，基础攻击力降低3点
+                </li>
+              </ul>
+
+              <h5 class="mt-3">装备调整：</h5>
+              <ul>
+                <li>
+                  <strong>闪电匕首</strong
+                  >：暴击率从12%降低至8%，但增加8%移动速度
+                </li>
+                <li>
+                  <strong>不祥征兆</strong>：价格降低150金币，物理防御降低10点
+                </li>
+                <li>
+                  <strong>新装备-万象天工</strong
+                  >：新增辅助装备，提供团队冷却缩减加成
+                </li>
+              </ul>
+
+              <h5 class="mt-3">玩法调整：</h5>
+              <ul>
+                <li>新增"峡谷迷雾"模式，每周五至周日开放，增加视野策略元素</li>
+                <li>
+                  暴君刷新时间从4分钟调整为5分钟，击杀后获得的增益效果提升
+                </li>
+                <li>优化打野刀机制，增加对远程英雄的适配性</li>
+              </ul>
+
+              <a href="版本更新.html#s45-1-0-3" class="text-danger"
+                >查看完整更新日志 →</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最新赛事 -->
+    <section class="latest-matches py-12 bg-light">
+      <div class="container">
+        <h2 class="section-title text-center mb-10">最新赛事</h2>
+
+        <div class="row">
+          <div class="col-lg-6 mb-6">
+            <div class="competition-item position-relative">
+              <img
+                src="../../images/wzry/match1.jpg"
+                alt="2024KPL夏季赛"
+                class="w-100"
+                style="height: 300px; object-fit: cover"
+              />
+              <div class="competition-badge">决赛</div>
+              <div class="p-4">
+                <h3>2024KPL夏季赛总决赛：成都AG超玩会 4-2 战胜 重庆狼队</h3>
+                <p class="text-muted">2024-08-18</p>
+                <p>
+                  在万众瞩目的KPL夏季赛总决赛中，成都AG超玩会以4-2的比分战胜重庆狼队，时隔三年再度捧起冠军奖杯。AG选手一诺凭借出色的发挥，获得总决赛MVP称号，这也是他职业生涯的第四个FMVP。
+                </p>
+                <p>
+                  关键的第六局比赛中，AG超玩会拿出了冷门英雄体系，出奇制胜，展现了深厚的战术储备。狼队虽然奋力反击，但未能扭转战局。
+                </p>
+                <a href="赛事资讯.html#kpl-2024-summer" class="text-danger"
+                  >查看详细战报 →</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6 mb-6">
+            <div class="competition-item position-relative">
+              <img
+                src="../../images/wzry/match2.jpg"
+                alt="王者荣耀世界冠军杯"
+                class="w-100"
+                style="height: 300px; object-fit: cover"
+              />
+              <div class="competition-badge">即将开始</div>
+              <div class="p-4">
+                <h3>2024王者荣耀世界冠军杯分组出炉，16支战队竞逐</h3>
+                <p class="text-muted">2024-08-25</p>
+                <p>
+                  2024王者荣耀世界冠军杯分组抽签仪式于8月24日举行，来自全球的16支顶尖战队分为四个小组，将在9月10日正式开赛。
+                </p>
+                <p>
+                  中国赛区共有6支战队参赛，其中成都AG超玩会、重庆狼队作为种子队伍直接晋级小组赛。本次外赛区战队中，韩国GEN.G、北美Sentinels等队伍备受关注。
+                </p>
+                <p>
+                  本届世界冠军杯总奖金池高达1000万美元，创历史新高，决赛将于11月在上海举行。
+                </p>
+                <a
+                  href="赛事资讯.html#world-championship-2024"
+                  class="text-danger"
+                  >查看赛程分组详情 →</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-6">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <h4>游戏天地</h4>
+            <p>致力于为游戏爱好者提供优质的游戏内容和深度研究</p>
+          </div>
+          <div class="col-md-4 mb-4">
+            <h4>快速链接</h4>
+            <ul class="footer-links">
+              <li><a href="../../游戏专栏/index.html">游戏专栏</a></li>
+              <li><a href="../../游戏资讯/index.html">游戏资讯</a></li>
+              <li><a href="../../游戏研究/index.html">游戏研究</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <h4>联系我们</h4>
+            <p>邮箱: contact@gameworld.com</p>
+            <p>微信: GameWorld2025</p>
+          </div>
+        </div>
+        <div class="border-top border-gray-700 mt-4 pt-4 text-center">
+          <p>&copy; 2025 游戏天地 - 探索游戏的无限可能</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../../bootstrap/js/jquery-3.4.1.slim.min.js"></script>
+    <script src="../../bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/common.js"></script>
+  </body>
+</html>
